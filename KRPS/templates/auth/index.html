@@ -1,33 +1,45 @@
 {% extends 'base.html' %}
 
 {% block page %}
+    <style>
+    body{
+        background:#eec6c6;
+    }
+    </style>
+
+
     <nav class="navbar navbar-dark bg-dark">
         <h4 class="navbar-brand">ARM организации занятий</h4>
     </nav>
-
-    <!--  {{title}}
-	<h1 class="display-4">Страница авторизации</h1> -->
 	
 
     <div class="container">
-            <div class="row">
+            <div class="row justify-content-center align-items-center" style="height: 80vh;">
                 <div class="col-md-offset-3 col-md-6">
-                    <form class="form-horizontal">
-                        <span class="heading">Вход</span>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email</label>
-                            <input type="email" class="form-control" id="inputEmail">
-                            <i class="fa fa-user"></i>
-                        </div>
-                        <div class="form-group help">
-                            <label for="exampleInputPassword1">Пароль</label>
-                            <input type="password" class="form-control" id="inputPassword" >
-                            <i class="fa fa-lock"></i>
-                            <label for="">Забыли пароль?</label>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Войти</button>
-                        </div>
+                    <form class="form-horizontal shadow p-5 mb-5 bg-white rounded">
+                        <h1 class="display-4 text-center">Вход</h1>
+                        <label>Email</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control">
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2">
+                                <i class="fas fa-envelope"></i>
+                              </span>
+                            </div>
+                          </div>
+                          <label>Пароль</label>
+                          <div class="input-group mb-3">
+                              <input type="text" class="form-control">
+                              <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                              </div>
+                            </div>
+                            <label class="text-secondary">Забыли пароль?</label>
+                            <div class="">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block mt-2">Войти</button>
+                            </div>
                 </form>
             </div>
         </div>
