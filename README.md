@@ -3,12 +3,16 @@
 Создана студентами группы ПИ-16
 <br>
    &#128106; В ролях:<br>
-        Иван Хмелёв        - &#128274;BackEnd &#128276;Teamlead <br>
-        Виктор Ощепков     - &#128274;BackEnd <br>
-        Ярослав Татаринов  - &#128736;FrontEnd <br>
-        Лидия Морина       - &#128736;FrontEnd <br>
-        Игорь Глинский     - &#128190;DataBase  <br>
-        Ольга Зуева        - &#9997;Design <br>
-<br><br>
+
+<table>
+   <tr><td>Иван Хмелёв</td><td>&#128274;BackEnd &#128276;Teamlead</td></tr>
+   <tr><td>Виктор Ощепков</td><td>&#128274;BackEnd</td></tr>
+   <tr><td>Ярослав Татаринов</td><td>&#128736;FrontEnd</td></tr>
+   <tr><td>Лидия Морина</td> <td>&#128736;FrontEnd</td></tr>
+   <tr><td>Игорь Глинский</td><td>&#128190;DataBase</td></tr>
+   <tr><td>Ольга Зуева</td><td>&#9997;Design</td></tr>
+<//table>
+
+<br>
 Стэк приложения: Django + Bootstrap4
         
