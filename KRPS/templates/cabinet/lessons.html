@@ -1,0 +1,10 @@
+{% extends 'cabinet/layout.html' %}
+
+{% block content %}
+    <p>Список занятий:</p>
+    {% for lesson in lessons %}
+        <p>
+            {{lesson}}
+        </p>
+    {% endfor %}
+{% endblock %}
