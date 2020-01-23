@@ -17,27 +17,26 @@
                 <div class="col-md-offset-3 col-md-6">
                     <form method="post" class="form-horizontal shadow p-5 mb-5 bg-white rounded">
                         <h1 class="display-4 text-center">Вход</h1>
-                        <label>Email</label>
+                        <label>Логин</label>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control">
                             <div class="input-group-append">
                               <span class="input-group-text" id="basic-addon2">
-                                <i class="fas fa-envelope"></i>
+                                <i class="fas fa-user-circle"></i>
                               </span>
                             </div>
                           </div>
                           <label>Пароль</label>
-                          <div class="input-group mb-3">
-                              <input type="text" class="form-control">
+                          <div class="input-group mb-5">
+                              <input type="password" class="form-control">
                               <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2">
                                     <i class="fa fa-lock"></i>
                                 </span>
                               </div>
                             </div>
-                            <label class="text-secondary">Забыли пароль?</label>
                             <div class="">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block mt-2">Войти</button>
+                                <button type="submit" class="btn btn-primary  btn-lg btn-block">Войти</button>
                             </div>
                         {% csrf_token %}
                 </form>
@@ -45,5 +44,5 @@
         </div>
     </div>
 
-    <form action="" method="post"></form>
+    <!--  <form action="" method="post"></form> -->
 {% endblock %}
