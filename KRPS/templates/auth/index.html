@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
 
 {% block page %}
+    <style>
+    body{
+        background:#eec6c6;
+    }
+    </style>
+
+
     <nav class="navbar navbar-dark bg-dark">
         <h4 class="navbar-brand">ARM организации занятий</h4>
     </nav>
-
-    <!--  {{title}}
-	<h1 class="display-4">Страница авторизации</h1> -->
 	
 
+<<<<<<< HEAD
     <div class="container shadow p-3 mb-5 bg-white rounded">
             <div class="row  justify-content-center align-items-center" style="height=80vh">
                 <div class="col-md-offset-3 col-md-6">
@@ -28,10 +33,38 @@
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Войти</button>
                         </div>
+=======
+    <div class="container">
+            <div class="row justify-content-center align-items-center" style="height: 80vh;">
+                <div class="col-md-offset-3 col-md-6">
+                    <form class="form-horizontal shadow p-5 mb-5 bg-white rounded">
+                        <h1 class="display-4 text-center">Вход</h1>
+                        <label>Email</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control">
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2">
+                                <i class="fas fa-envelope"></i>
+                              </span>
+                            </div>
+                          </div>
+                          <label>Пароль</label>
+                          <div class="input-group mb-3">
+                              <input type="text" class="form-control">
+                              <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                              </div>
+                            </div>
+                            <label class="text-secondary">Забыли пароль?</label>
+                            <div class="">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block mt-2">Войти</button>
+                            </div>
+>>>>>>> 80ffb7760610056a10e8560148651704225f817d
                 </form>
             </div>
         </div>
-    </div>
-
-    <form action="" method="post"></form>
+    </div>   
+    <!-- <form action="" method="post"></form> -->
 {% endblock %}
