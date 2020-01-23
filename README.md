@@ -7,7 +7,7 @@
 <br>
    &#128106; В ролях:<br>
 <table>
-   <tr><td>&#127776;Иван Хмелёв</td><td>&#128274;BackEnd</td></tr>
+   <tr><td>&#127776;Иван Хмелев</td><td>&#128274;BackEnd</td></tr>
    <tr><td>Виктор Ощепков</td><td>&#128274;BackEnd</td></tr>
    <tr><td>Ярослав Татаринов</td><td>&#128736;FrontEnd</td></tr>
    <tr><td>Лидия Морина</td> <td>&#128736;FrontEnd</td></tr>
