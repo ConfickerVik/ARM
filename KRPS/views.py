@@ -1,18 +1,19 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
-from KRPS.MySQLdb import MySQLDBConnect
+# from KRPS.MySQLdb import MySQLDBConnect
 
 def index(request):
 	title = 'АРМ организация занятий'
 	login = ''
-	DBConnect = MySQLDBConnect()
-	cursorMySQL = DBConnect.connect()
+	password = ''
+	# DBConnect = MySQLDBConnect()
+	# cursorMySQL = DBConnect.connect()
 	if request.POST:
 		login = request.POST.get('login')
 		password = request.POST.get('pass')
-		checkDB = "SELECT * FROM krps.users_prepod WHERE login_prepod = '%s' and pass_prepod = '%s';" % (login, password)
-		resQueryMySQL = DBConnect.query(cursorMySQL, checkDB)
-		if resQueryMySQL != ():
+		# checkDB = "SELECT * FROM krps.users_prepod WHERE login_prepod = '%s' and pass_prepod = '%s';" % (login, password)
+		# resQueryMySQL = DBConnect.query(cursorMySQL, checkDB)
+		if login == request.POST.get('login') and password == request.POST.get('login'):
 			return redirect('cabinet')
 	return render(request, 'auth/index.html', context={'title': title, 'login': login})
 	
