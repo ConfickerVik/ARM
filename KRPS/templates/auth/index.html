@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block page %}
     <style>
     body{
-        background:#eec6c6;
+        background:url("{% static 'images/bg_auth.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
     }
     </style>
-
-
     <nav class="navbar navbar-dark bg-dark " style="height: 90px;">
         <h4 class="navbar-brand">ARM организации занятий</h4>
     </nav>
@@ -17,18 +17,18 @@
                 <div class="col-md-offset-3 col-md-6">
                     <form method="post" class="form-horizontal shadow p-5 mb-5 bg-white rounded">
                         <h1 class="display-4 text-center">Вход</h1>
-                        <label>Логин</label>
+                        <label class="m-0">Логин</label>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control">
+                            <input type="text" placeholder="Введите логин" class="form-control">
                             <div class="input-group-append">
                               <span class="input-group-text" id="basic-addon2">
                                 <i class="fas fa-user-circle"></i>
                               </span>
                             </div>
                           </div>
-                          <label>Пароль</label>
+                          <label class="m-0">Пароль</label>
                           <div class="input-group mb-5">
-                              <input type="password" class="form-control">
+                              <input type="password" class="form-control" placeholder="Введите пароль">
                               <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2">
                                     <i class="fa fa-lock"></i>
@@ -43,6 +43,4 @@
             </div>
         </div>
     </div>
-
-    <!--  <form action="" method="post"></form> -->
 {% endblock %}
