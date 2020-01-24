@@ -19,16 +19,16 @@
                         <h1 class="display-4 text-center">Вход</h1>
                         <label class="m-0">Логин</label>
                         <div class="input-group mb-3">
-                            <input type="text" placeholder="Введите логин" class="form-control">
+                            <input name="login" type="text" class="form-control" value="{{ login }}">
                             <div class="input-group-append">
                               <span class="input-group-text" id="basic-addon2">
                                 <i class="fas fa-user-circle"></i>
                               </span>
                             </div>
                           </div>
-                          <label class="m-0">Пароль</label>
-                          <div class="input-group mb-5">
-                              <input type="password" class="form-control" placeholder="Введите пароль">
+                          <label>Пароль</label>
+                          <div class="input-group mb-3">
+                              <input name="pass" type="text" class="form-control">
                               <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2">
                                     <i class="fa fa-lock"></i>
