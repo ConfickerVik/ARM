@@ -19,5 +19,11 @@ def index(request):
 	
 
 def cabinet(request):
-	lessons = ['1урок', '2урок', '3урок']
-	return render(request, 'cabinet/lessons.html', context={'lessons':lessons})
+	courses = [
+		{'id':1, 'name':'Командная разработка', 'group':'ПИ 1-16'},
+		{'id':2, 'name':'Конструироваие ПО', 'group':'ПИ 1-15'},
+	]
+	return render(request, 'cabinet/course.html', context={'courses':courses})
+
+def schedule(request):
+	return render(request, 'cabinet/schedule.html')
