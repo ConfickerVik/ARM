@@ -19,5 +19,27 @@ def index(request):
 	
 
 def cabinet(request):
-	lessons = ['1урок', '2урок', '3урок']
-	return render(request, 'cabinet/lessons.html', context={'lessons':lessons})
+	courses = [
+		{'id':1,
+		 'name':'Командная разработка',
+		 'yearEducation':"'19-'20",
+		 'university':'ИрГУПС',
+		 'group':'ПИ-16',
+		 'countSrudents':'24',
+		 'hoursEducation':"120",
+		 'comment':'Делаем компилятор'
+		},
+		{'id':2,
+		 'name':'Конструироваие ПО',
+		 'yearEducation':"'19-'20",
+		 'university':'ИрГУПС',
+		 'group':'ПИ-15',
+		 'countSrudents':'24',
+		 'hoursEducation':"120",
+		 'comment':'Делаем компилятор'
+		},
+	]
+	return render(request, 'cabinet/courses/index.html', context={'courses':courses})
+
+def schedule(request):
+	return render(request, 'cabinet/schedule.html')
