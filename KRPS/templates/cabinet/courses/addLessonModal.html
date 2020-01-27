@@ -1,0 +1,55 @@
+
+<!-- Modal -->
+<div class="modal fade" id="modalAddLesson" tabindex="-1" role="dialog" aria-labelledby="modalAddLesson" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Создание занятия</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form method="POST">
+                <div class="form-group">
+                    <label>Навание раздела</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                        <label for="formGroupExampleInput">Тема занятия</label>
+                        <input type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Тип занятия</label>
+                    <select class="custom-select" required>
+                            <option value="">Выберете тип занятия</option>
+                            <option value="1">Лекция</option>
+                            <option value="2">Практическое занятие</option>
+                            <option value="3">Лабораторная работа</option>
+                            <option value="4">Контрольня работа</option>
+                            <option value="5">Экзамен</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="example-date-input" class="col-xs-2 col-form-label">Дата</label>
+                        <div class="col-xs-10">
+                          <input class="form-control" type="date" value="2020-01-27" id="example-date-input">
+                        </div>
+                </div>        
+                <div class="form-group">
+                    <label >Кол-во часов</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Материал</label>
+                    <input type="text" class="form-control">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Добавить</button>
+          <button type="button" class="btn btn-primary">Отмена</button>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.Modal -->
