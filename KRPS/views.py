@@ -24,8 +24,8 @@ def cabinet(request):
 		 'name':'Командная разработка',
 		 'yearEducation':"'19-'20",
 		 'university':'ИрГУПС',
-		 'countSrudents':'24',
 		 'group':'ПИ-16',
+		 'countSrudents':'24',
 		 'hoursEducation':"120",
 		 'comment':'Делаем компилятор'
 		},
@@ -33,8 +33,8 @@ def cabinet(request):
 		 'name':'Конструироваие ПО',
 		 'yearEducation':"'19-'20",
 		 'university':'ИрГУПС',
-		 'countSrudents':'24',
 		 'group':'ПИ-15',
+		 'countSrudents':'24',
 		 'hoursEducation':"120",
 		 'comment':'Делаем компилятор'
 		},
