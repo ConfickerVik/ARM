@@ -28,7 +28,7 @@
                           </div>
                           <label>Пароль</label>
                           <div class="input-group mb-3">
-                              <input name="pass" type="text" class="form-control">
+                              <input name="pass" type="password" class="form-control">
                               <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2">
                                     <i class="fa fa-lock"></i>
@@ -36,10 +36,11 @@
                               </div>
                             </div>
                             <div class="">
-                                <button type="submit" class="btn btn-primary  btn-lg btn-block">Войти</button>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Войти</button>
                             </div>
                         {% csrf_token %}
                 </form>
+                
             </div>
         </div>
     </div>
