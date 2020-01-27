@@ -2,8 +2,12 @@
 
 {% block content %}
 <h1 class="display-4">Курсы</h1>
-
-<button type="button" class="btn btn-success my-3" data-toggle="modal" data-target="#exampleModal" >Добавить курс</button>
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+</script>
+<button type="button" class="btn btn-success my-3" data-toggle="modal" data-target="#exampleModal"  id="firstModal" >Добавить курс</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -22,7 +26,7 @@
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="inputEmail3" placeholder="Email">
                     </div>
-                    
+                
                 </div>
                 <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Тема занятия</label>
@@ -66,7 +70,8 @@
       </div>
     </div>
   </div>
-
+ 
+  
 
 <table style="font-size:1.2rem" class="table table-striped table-hover table-dark m-0">
     <thead>
