@@ -1,0 +1,17 @@
+{% extends 'cabinet/layout.html' %}
+
+{% block content %}
+    <h1 class="display-4">Расписание</h1>
+    <div class="row p-3 m-6">
+        {% for lesson in lessons %}
+            <div class="col-2">
+                <div class="schedule-card bg-dark text-white border rounded shadow-sm p-4">
+                    <h4 style="font-weight: 300; line-height: 1.2;">{{lesson.name}}</h4>
+                    <hr class="bg-white"></hr>
+                    <p>{{lesson.type}}</p>
+                    <p>{{lesson.date}}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

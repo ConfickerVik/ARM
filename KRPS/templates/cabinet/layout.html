@@ -20,14 +20,13 @@
         <nav class="col-2 p-0 bg-dark sidebar">
             {% include 'cabinet/navbar.html' %}
         </nav>
-        
-        <main role="main" class="col-10 ml-sm-auto px-4">
-            {% block content %}
-            {% endblock %}
-        </main>
-
+        <div id="particles-js"></div>
+            <main role="main" class="col-10 ml-sm-auto px-4">
+                {% block content %}
+                {% endblock %}
+            </main>
     </div>
 </div>
 
-    
+
 {% endblock %}
