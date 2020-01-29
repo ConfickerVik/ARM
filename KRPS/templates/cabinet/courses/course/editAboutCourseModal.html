@@ -1,0 +1,57 @@
+<!-- Полное  редактирование дисциплины-->
+<div class="modal fade" id="editAboutCourseModal" tabindex="-1" role="dialog" aria-labelledby="editAboutCourseModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Редактирование курса</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST">
+                    <div class="form-group">
+                        <label>Дисциплина</label>
+                        <input type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                            <label for="formGroupExampleInput">Группа</label>
+                            <input type="text" class="form-control">
+                    </div>
+                
+                    <div class="form-group">
+                            <label >Университет</label>
+                            <input type="text" class="form-control">
+                    </div> 
+
+                    <div class="form-group">
+                            <label >Год обучения</label>
+                            <input type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label >Кол-во часов</label>
+                        <input type="number" class="form-control">
+                    </div>
+                    <div class="form-group">
+                            <label >Кол-во студентов</label>
+                            <input type="number" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Описание курса</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" cols="20"></textarea>
+                        
+                    </div>
+
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-success" >Добавить</button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal"> Отмена</button>
+                    </div>
+                </form>
+            </div>
+    
+          </div>
+        </div>
+      </div>
