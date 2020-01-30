@@ -1,6 +1,6 @@
     <h5 class="p-2 text-center text-light">Курганская Ольга Викторовна</h5>
     
-      <ul class="nav nav-pills nav-fill flex-column">
+      <ul style="font-size:1.2rem" class="nav nav-pills nav-fill flex-column">
         <li class="nav-item text-left p-0">
           <a class="nav-link text-light curses" href="/cabinet"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Курсы</a>
         </li>
@@ -8,16 +8,13 @@
           <a class="nav-link text-light schedule" href="/cabinet/schedule"><i class="fa fa-list-alt" aria-hidden="true"></i> Расписание</a>
         </li> 
         <li class="nav-item text-left p-0">
-          <a class="nav-link text-light" href="#"><i class="fa fa-users" aria-hidden="true"></i> Студенты</a>
+          <a class="nav-link text-light students" href="/cabinet/students"><i class="fa fa-users" aria-hidden="true"></i> Студенты</a>
         </li>
-      </ul>
-
-      <ul class="nav nav-pills nav-fill">
-        <li class="nav-item text-left
-         p-0">
+        <li class="nav-item text-left p-0">
           <a class="nav-link text-light" href="#"><i class="fas fa-sign-out-alt"></i> Выйти</a>
         </li>
       </ul>
+
 
 <script>
   const activeURL = window.location.pathname
@@ -27,6 +24,9 @@
       break;
     case '/cabinet/schedule/':
       $('.schedule').addClass('active')
+      break;
+    case '/cabinet/students/':
+      $('.students').addClass('active')
       break;
   }
 </script>

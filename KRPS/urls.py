@@ -19,7 +19,9 @@ from . import views
 
 urlpatterns = [
 	path('', views.index, name="index"),
-	path('cabinet/', views.cabinet, name="cabinet"),
-	path('cabinet/schedule/', views.schedule, name="schedule"),
+	path('cabinet/', views.cabinet, name ="cabinet"),
+    path('cabinet/courses/<int:course_id>/', views.course, name ="course"),
+	path('cabinet/schedule/', views.schedule, name ="schedule"),
+	path('cabinet/students/', views.students, name ="students"),
     path('admin/', admin.site.urls),
 ]
