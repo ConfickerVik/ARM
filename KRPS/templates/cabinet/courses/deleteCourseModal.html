@@ -13,6 +13,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-danger">Удалить</button>
+					{% csrf_token %}
+					
                     <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Отмена</button>
                 </div>
             </form>    

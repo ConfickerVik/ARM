@@ -1,41 +1,10 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
-# from KRPS.MySQLdb import MySQLDBConnect
+from KRPS.MySQLdb import MySQLDBConnect
 
-courses = [
-		{'id':1,
-		 'name':'Командная разработка',
-		 'yearEducation':"'19-'20",
-		 'university':'ИрГУПС',
-		 'group':'ПИ-16',
-		 'countSrudents':'24',
-		 'hoursEducation':"120",
-		 'comment':'Делаем компилятор'
-		},
-		{'id':2,
-		 'name':'Конструироваие ПО',
-		 'yearEducation':"'19-'20",
-		 'university':'ИрГУПС',
-		 'group':'ПИ-15',
-		 'countSrudents':'24',
-		 'hoursEducation':"120",
-		 'comment':'Делаем компилятор'
-		},
-	]
-lessons = [
-	{'id':1,
-	 'id_test':1,
-	 'type':'Лекция',
-	 'date':'2001.09.11',
-	 'name':'Как правильно летать'
-	},
-	{'id':2,
-	 'id_test':1,
-	 'type':'Практика',
-	 'date':'2001.09.11',
-	 'name':'Гном ест борщ'
-	}
-]
+
+DBConnect = MySQLDBConnect()
+connectMySQL = DBConnect.connect()
 
 def index(request):
 	title = 'АРМ организация занятий'
@@ -53,8 +22,44 @@ def index(request):
 	return render(request, 'auth/index.html', context={'title': title, 'login': login})
 	
 
+#def addCourseModal(request):
+	
+
+def deleteCourseModal(request):
+	DBConnect = MySQLDBConnect()
+	cursorMySQL = DBConnect.connect()
+	if request.POST:
+		id_courses = int(request.POST.get('sys.courses.id_course'))
+		checkDB = "DELETE FROM sys.courses WHERE id_courses = %d" % id_courses
+		DBConnect.query(connectMySQL, checkDB)
+		connectMySQL.commit()
+	return redirect('cabinet')
+	
 	
 def cabinet(request):
+	coursesQuery = "SELECT * FROM sys.courses;"
+	courses = DBConnect.query(connectMySQL, coursesQuery)
+	if request.POST:
+		if len(request.POST) == 5:
+			print(request.POST)
+			print(request.GET)
+			name_dis = request.POST.get('name_dis')
+			group_name = request.POST.get('group_name')
+			univer = request.POST.get('univer')
+			year_ed = int(request.POST.get('year_ed'))
+			checkDB = "INSERT INTO sys.courses (name, year_education, university, group_name)  VALUES ('%s', '%d', '%s', '%s');" % (name_dis, year_ed, univer, group_name)
+			DBConnect.query(connectMySQL, checkDB)
+			connectMySQL.commit()
+			return redirect('cabinet')
+		else:
+			print(request.POST)
+			print()
+			#id_courses = int(request.POST.get('sys.courses.id_course'))
+			#checkDB = "DELETE FROM sys.courses WHERE id_courses = %d" % id_courses
+			#DBConnect.query(connectMySQL, checkDB)
+			#connectMySQL.commit()
+			#return redirect('cabinet')
+			
 	return render(request, 'cabinet/courses/index.html', context={'courses':courses})
 
 def course(request, course_id):

@@ -6,12 +6,12 @@ class MySQLDBConnect:
 		connection = pymysql.connect(host='127.0.0.1',
 			user='root',
 			password='',
-			db='krps',
+			db='sys',
 			cursorclass=pymysql.cursors.DictCursor)
+		return connection
+		
+	def query(self, connection, querydb):
 		cursor = connection.cursor()
-		return cursor
-
-	def query(self, cursor, querydb):
 		cursor.execute(querydb)
 		resQuary = cursor.fetchall()
 		return resQuary
