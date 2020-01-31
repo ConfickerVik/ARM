@@ -1,6 +1,7 @@
 {% extends 'cabinet/layout.html' %}
 
 {% block content %}
+<form name="addCourse" metod="post" action="">
 <h1 class="display-4">Курсы</h1>
 
 <button type="button" id="buttonAddKurs" class="btn btn-success my-3 btn-lg" data-toggle="modal" data-target="#modalAddKurs">Добавить курс</button>
@@ -20,25 +21,32 @@
         <tr>
             <th scope="row">{{ forloop.counter }}</th>
             <td>{{course.name}}</td>
-            <td>{{course.group}}</td>
+            <td>{{course.group_name}}</td>
             <td>{{course.university}}</td>
             <td class="text-right">
-                <i onclick="document.location='/cabinet/courses/{{course.id}}/';" class="fas fa-eye p-2 border border-primary rounded text-primary"></i>
-                <i data-toggle="modal" data-target="#modalEditKurs" class="fas fa-edit p-2 border border-info rounded text-info"></i>
-                <i data-toggle="modal" data-target="#modalDeleteKurs" class="fas fa-trash p-2 border border-danger rounded text-danger"></i>
+                    <style>
+                        .cross { cursor: pointer; }
+                    </style>
+                <i onclick="document.location='/cabinet/courses/{{course.id_course}}/'" class="fas fa-eye p-2 border border-primary rounded text-primary cross"></i>
+                <i data-toggle="modal" data-target="#modalEditKurs" class="fas fa-edit p-2 border border-info rounded text-info cross" ></i>
+                <i data-toggle="modal" data-target="#modalDeleteKurs" class="fas fa-trash p-2 border border-danger rounded text-danger cross"></i>
             </td>
         </tr>
         {% endfor %}
+        <!--
         <tr>
             <th colspan="5" scope="row">
+            	
                 <button type="button" class="btn rounded-0 bg-dark btn-lg btn-block btn-outline-success m-0" data-toggle="modal" data-target="#modalAddKurs">
                     <i class="fas fa-plus"></i>
                 </button>
+            	
             </th>
         </tr>
+    	-->
     </tbody>
 </table>
-
+</form>
 {% include 'cabinet/courses/addCourseModal.html' %}
 {% include 'cabinet/courses/editCourseModal.html' %}
 {% include 'cabinet/courses/deleteCourseModal.html' %}

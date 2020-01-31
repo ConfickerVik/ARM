@@ -1,5 +1,5 @@
-
-<div class="modal fade" id="modalDeleteKurs" tabindex="-1" role="dialog" aria-labelledby="modalDeleteKurs" aria-hidden="true">
+<!-- Удаление дисциплины-->
+<div class="modal fade" id="modalDeleteAboutCourse" tabindex="-1" role="dialog" aria-labelledby="modalDeleteAboutCourse" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <form method="POST">
@@ -13,12 +13,10 @@
                     <p>Вы действительно хотите удалить курс?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger">Удалить</button>
+                    <button type="submit" class="btn btn-danger">Удалить</button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Отмена</button>
-                    {% csrf_token %}
                 </div>
-            </form>    
+            </form>
         </div>
     </div>
-</div>
 </div>

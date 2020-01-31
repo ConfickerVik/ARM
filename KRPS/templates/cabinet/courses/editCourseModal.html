@@ -1,3 +1,4 @@
+<!-- модальное окно редактирования курса-->
 <div class="modal fade" id="modalEditKurs" tabindex="-1" role="dialog" aria-labelledby="modalEditKurs" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -31,6 +32,7 @@
                 <div class="modal-footer">
                   <button type="submit" class="btn btn-success">Изменить</button>
                   <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Отмена</button>
+                  {% csrf_token %}
                 </div>
             </form>        
         </div>
