@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.conf import settings
 from KRPS.MySQLdb import MySQLDBConnect
 
-
 DBConnect = MySQLDBConnect()
 connectMySQL = DBConnect.connect()
 lessons = [
@@ -42,11 +41,11 @@ def addCourseModal(request):
 	addCourse = "INSERT INTO krps_db.courses (name, year_education, university, group_name) VALUES ('%s', '%d', '%s', '%s');" % (name_dis, year_education, university, group_name)
 	DBConnect.query(connectMySQL, addCourse)
 	connectMySQL.commit()
-	return redirect('cabinet')
 
 def cabinet(request):
 	if request.POST:
 		addCourseModal(request)
+		return redirect('cabinet')
 	coursesQuery = "SELECT * FROM krps_db.courses"
 	courses = DBConnect.query(connectMySQL, coursesQuery)
 	return render(request, 'cabinet/courses/index.html', context={'courses':courses})
