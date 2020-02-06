@@ -10,7 +10,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p id="idCourse">Вы действительно хотите удалить курс?</p>
+                    <p>Вы действительно хотите удалить курс <span id="idCourse" name="removeIdCourse"></span>?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-danger">Удалить</button>
@@ -27,6 +27,6 @@
         let delBtn = $(event.relatedTarget)
         let modal = $(this)
         modal.find('#idCourse')
-        .attr('name', delBtn.data('idCourse'));
+        .text(delBtn.data('idCourse'));
     })
 </script>

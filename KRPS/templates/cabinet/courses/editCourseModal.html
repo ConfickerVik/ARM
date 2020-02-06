@@ -10,7 +10,7 @@
         </div>
         <div class="modal-body">
             <form method="POST">
-                <p>id курса: <span id="idCourse"></span></p>
+                <p>id курса: <span id="idCourse" name="editIdCourse"></span></p>
                 <div class="form-group">
                   <label>Навание дисциплины</label>
                   <input type="text" id="nameCourse" class="form-control">
@@ -44,7 +44,7 @@
     
     let editBtn = $(event.relatedTarget)
     let modal = $(this)
-    modal.find('#idCourse').text(editBtn.data('idCourse')).attr('name', editBtn.data('idCourse'));
+    modal.find('#idCourse').text(editBtn.data('idCourse'));
     modal.find('#nameCourse').val(editBtn.data('nameCourse'))
     modal.find('#groupCourse').val(editBtn.data('groupCourse'))
     modal.find('#yearCourse').val(editBtn.data('yearCourse'))
