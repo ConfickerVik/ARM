@@ -27,8 +27,17 @@
                         .cross { cursor: pointer; }
                     </style>
                 <i onclick="document.location='/cabinet/courses/{{course.id}}/';" class="fas fa-eye p-2 border border-primary rounded text-primary cross"></i>
-                <i data-toggle="modal" data-target="#modalEditKurs" class="fas fa-edit p-2 border border-info rounded text-info cross" ></i>
-                <i data-toggle="modal" data-target="#modalDeleteKurs" class="fas fa-trash p-2 border border-danger rounded text-danger cross"></i>
+                <i 
+                class="fas fa-edit p-2 border border-info rounded text-info cross" 
+                data-toggle="modal" 
+                data-target="#modalEditKurs" 
+                data-id-course="{{course.id}}"
+                data-name-course="{{course.name}}"
+                data-group-course="{{course.group}}"
+                data-university-course="{{course.university}}"
+                data-year-course="{{course.yearEducation}}"
+                ></i>
+                <i data-toggle="modal" data-target="#modalDeleteCourse" class="fas fa-trash p-2 border border-danger rounded text-danger cross" data-id-course="{{course.id}}"></i>
             </td>
         </tr>
         {% endfor %}

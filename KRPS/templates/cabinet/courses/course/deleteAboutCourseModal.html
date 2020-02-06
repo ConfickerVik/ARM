@@ -10,7 +10,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Вы действительно хотите удалить курс?</p>
+                    <p id="idCourse">Вы действительно хотите удалить курс?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-danger">Удалить</button>
@@ -20,3 +20,12 @@
         </div>
     </div>
 </div>
+<script>
+    $('#modalDeleteAboutCourse').on('show.bs.modal', function (event) {
+
+        let delBtn = $(event.relatedTarget)
+        let modal = $(this)
+        modal.find('#idCourse')
+        .attr('name', delBtn.data('idCourse'));
+    })
+</script>

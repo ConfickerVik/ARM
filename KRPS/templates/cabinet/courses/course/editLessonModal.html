@@ -1,53 +1,47 @@
-
 <!-- Модальное окно редактирование  занятия -->
-<div class="modal fade" id="modalEditLesson" tabindex="-1" role="dialog" aria-labelledby="modalEditLesson" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Редактирование занятия</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <form method="POST">
-                    <div class="form-group">
-                            <label for="formGroupExampleInput">Тема занятия</label>
-                            <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="formGroupExampleInput">Тип занятия</label>
-                        <select class="custom-select" required>
-                                <option value="">Выберите тип занятия</option>
-                                <option value="1">Лекция</option>
-                                <option value="2">Практическое занятие</option>
-                                <option value="3">Лабораторная работа</option>
-                                <option value="4">Контрольня работа</option>
-                                <option value="5">Экзамен</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="example-date-input" class="col-xs-2 col-form-label">Дата</label>
-                            <div class="col-xs-10">
-                              <input class="form-control" type="date" value="2020-01-27" id="example-date-input">
-                            </div>
-                    </div>        
-                    <div class="form-group">
-                        <label for="formGroupExampleInput">Материал</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" cols="9"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="formGroupExampleInput">Комментарий</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" cols="9"></textarea>
-                    </div>
-
-                    <div class="modal-footer">
-                      <button type="submit" class="btn btn-success" >Добавить</button>
-                      <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Отмена</button>
-                    </div>
-                </form>
-            </div>
-    
+<div class="modal fade" id="modalEditLesson" tabindex="-1" role="dialog" aria-labelledby="modalEditLesson"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Редактирование занятия</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST">
+          <div class="form-group">
+            <label for="formGroupExampleInput">Тема занятия</label>
+            <input type="text" class="form-control">
           </div>
-        </div>
-      </div><!-- /.Modal -->
+          <div class="form-group">
+            <label for="formGroupExampleInput">Тип занятия</label>
+            <select class="custom-select" required>
+              <option value="">Выберите тип занятия</option>
+              <option value="1">Лекция</option>
+              <option value="2">Практическое занятие</option>
+              <option value="3">Лабораторная работа</option>
+              <option value="4">Контрольня работа</option>
+              <option value="5">Экзамен</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="example-date-input" class="col-xs-2 col-form-label">Дата</label>
+              <input class="form-control" type="date" value="2020-01-27" id="example-date-input">
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Комментарий</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" cols="9"></textarea>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Добавить</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Отмена</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
