@@ -1,8 +1,8 @@
-<!-- Удаление дисциплины-->
+<!-- Удаление курса-->
 <div class="modal fade" id="modalDeleteAboutCourse" tabindex="-1" role="dialog" aria-labelledby="modalDeleteAboutCourse" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form method="POST">
+            <form id="removeCourseForm" method="POST">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Подтверждение действия</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -20,3 +20,27 @@
         </div>
     </div>
 </div>
+<script>
+    let idCourse
+
+    $('#modalDeleteAboutCourse').on('show.bs.modal', function (event) {
+        let delBtn = $(event.relatedTarget)
+        idCourse = delBtn.data('idCourse')
+    })
+    let frmDeleteCourse = $('#removeCourseForm');
+    frmDeleteCourse.submit(function () {
+        $.ajax({
+            type: 'POST',
+            data:
+            {
+            'delCourse_id' : idCourse,
+            'csrfmiddlewaretoken': '{{ csrf_token }}',
+            'typeAction':'deleteCourse'
+            },
+            success:  () => {
+                location.replace('/cabinet/')
+            }
+        });
+        return false;
+    });
+</script>

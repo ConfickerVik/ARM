@@ -30,12 +30,37 @@
                   <input name="year_education" type="text" class="form-control">
                 </div>
                 <div class="modal-footer p-0 pt-2">
-                  <button type="submit" class="btn btn-success">Добавить</button>
+                  <button id="BtnAddCourse" type="button" class="btn btn-success">Добавить</button>
                   <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Отмена</button>
-                  {% csrf_token %}
+
                 </div>
             </form>        
         </div>
       </div>
     </div>
   </div>
+<script>
+  $('#BtnAddCourse').click(function () {
+    let name_dis = $("input[name = 'name_dis']").val()
+    let group_name = $("input[name = 'group_name']").val()
+    let university = $("input[name = 'university']").val()
+    let year_education = $("input[name = 'year_education']").val()
+    $.ajax({
+      url: '/cabinet/',
+      type: 'POST',
+      data: {
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
+        'typeAction': 'addCourse',
+        'name_dis': name_dis,
+        'group_name': group_name ,
+        'university': university,
+        'year_education': year_education
+      },
+      success: function (data) {
+        location.reload()
+      },
+    });
+    return false;
+  });
+
+</script>
