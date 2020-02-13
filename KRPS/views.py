@@ -3,25 +3,25 @@ from django.conf import settings
 # from KRPS.MySQLdb import MySQLDBConnect
 
 courses = [
-		{'id':1,
-		 'name':'Командная разработка',
-		 'yearEducation':"'19-'20",
-		 'university':'ИрГУПС',
-		 'group':'ПИ-16',
-		 'countSrudents':'24',
-		 'hoursEducation':"120",
-		 'comment':'Делаем компилятор'
-		},
-		{'id':2,
-		 'name':'Конструироваие ПО',
-		 'yearEducation':"'19-'20",
-		 'university':'ИрГУПС',
-		 'group':'ПИ-15',
-		 'countSrudents':'24',
-		 'hoursEducation':"120",
-		 'comment':'Делаем компилятор'
-		},
-	]
+	{'id':1,
+		'name':'Командная разработка',
+		'yearEducation':"'19-'20",
+		'university':'ИрГУПС',
+		'group':'ПИ-16',
+		'countSrudents':'24',
+		'hoursEducation':"120",
+		'comment':'Делаем компилятор'
+	},
+	{'id':2,
+		'name':'Конструироваие ПО',
+		'yearEducation':"'19-'20",
+		'university':'ИрГУПС',
+		'group':'ПИ-15',
+		'countSrudents':'24',
+		'hoursEducation':"120",
+		'comment':'Делаем компилятор'
+	}
+]
 lessons = [
 	{'id':1,
 	 'id_test':1,
@@ -36,6 +36,24 @@ lessons = [
 	 'name':'Гном ест борщ'
 	}
 ]
+students = [{
+	'id':1,
+	'FIO': 'Аниме Пацан Пацанович',
+	'group': 'ПИ-15'
+}]
+marks = [{
+	'id':1,
+	'id_student': 1,
+	'id_lesson':1,
+	'mark':'5'
+}]
+
+visits = [{
+	'id':1,
+	'id_student': 1,
+	'id_lesson':1,
+	'visited':'true'
+}]
 
 def index(request):
 	title = 'АРМ организация занятий'
