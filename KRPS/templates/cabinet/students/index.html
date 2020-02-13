@@ -2,4 +2,148 @@
 
 {% block content %}
     <h1 class="display-4">Студенты</h1>
+    <div class="input-group mb-2">
+        <select class="custom-select">
+          <option value="" hidden>Дисциплина</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        <select class="custom-select">
+            <option value="" hidden>Группа</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        <div class="input-group-append">
+          <button class="btn btn-success" type="button">Показать</button>
+        </div>
+      </div>
+    <table style="font-size:1.2rem" class="table table-striped table-hover table-dark m-0">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ФИО</th>
+                <th scope="col">ДАТА1 <span id="lecTag">ЛЕК</span></th>
+                <th scope="col">ДАТА1 <span id="labTag">ЛАБ</span></th>
+                <th scope="col">ДАТА2 <span id="semTag">СЕМ</span></th>
+                <th scope="col">ДАТА3 <span id="lecTag">ЛЕК</span></th>
+                <th scope="col">ДАТА3 <span id="lecTag">ЛЕК</span></th>
+                <th scope="col">ДАТА4 <span id="lecTag">ЛЕК</span></th>
+                <th scope="col">ДАТА4 <span id="labTag">ЛАБ</span></th>
+                <th scope="col">ДАТА5 <span id="exsTag">ЭКЗ</span></th>
+            </tr>
+        </thead>
+        <tbody id="studentsTable"> 
+            <tr>
+                <th scope="row">1</th>
+                <td>Аниме Г.Г.</td>
+                <td>
+                    <div class="input-group">
+                        <input type="checkbox" style="width:40px; height:40px;">
+                        <select class="custom-select">
+                            <option value="" hidden>Оценка</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="checkbox" style="width:40px; height:40px;">
+                        <select class="custom-select">
+                            <option value="" hidden>Оценка</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="checkbox" style="width:40px; height:40px;">
+                        <select class="custom-select">
+                            <option value="" hidden>Оценка</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="checkbox" style="width:40px; height:40px;">
+                        <select class="custom-select">
+                            <option value="" hidden>Оценка</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="checkbox" style="width:40px; height:40px;">
+                        <select class="custom-select">
+                            <option value="" hidden>Оценка</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="checkbox" style="width:40px; height:40px;">
+                        <select class="custom-select">
+                            <option value="" hidden>Оценка</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="checkbox" style="width:40px; height:40px;">
+                        <select class="custom-select">
+                            <option value="" hidden>Оценка</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="checkbox" style="width:40px; height:40px;">
+                        <select class="custom-select">
+                            <option value="" hidden>Оценка</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
 {% endblock %}
