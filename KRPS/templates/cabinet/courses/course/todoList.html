@@ -1,0 +1,110 @@
+<div id="list" class="todo p-3 m-1">
+    <div class="todo__controls">
+        <input placeholder="Добавить todoшку" type="text" class="todo__text" />
+        <button disabled="disabled" class="btn btn-success todo__add">Добавить</button>
+    </div>
+    <ul class="todo__list">
+    </ul>
+</div>
+
+<style>
+    .todo {
+        border: 2px solid #eee;
+        width: 100%;
+    }
+
+    .todo__list {
+        text-align: left;
+        list-style-type: none;
+        padding-left: 0px;
+    }
+
+    .todo__list-item {
+        cursor: pointer;
+    }
+
+    .todo__list-item:nth-child(even) {
+        background-color: #eee;
+    }
+
+    .todo__list-item_completed_yes {
+        text-decoration: line-through;
+    }
+
+    .todo__list-item-text {
+        display: inline-block;
+        font-size: 1.1rem;
+        max-width: 480px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .todo__list-item_completed_yes .todo__list-item-text {
+        text-decoration: line-through;
+    }
+
+    .todo__list-item-remove {
+        float: right;
+        opacity: 1;
+        margin-left: 15px;
+    }
+</style>
+
+<script>
+    function Todo(elem) {
+        this.eList = elem.find('.todo__list');
+        this.eText = elem.find('.todo__text');
+        this.eButton = elem.find('.todo__add');
+
+        var that = this;
+        this.eText.on('input', function () {
+            that.eButton.prop('disabled', !this.value);
+        });
+
+        this.eButton.on('click', function () {
+            var val = that.eText.val();
+
+            if (val) {
+                that.addItem(val);
+
+                that.eText.val('');
+                that.eButton.prop('disabled', true);
+            }
+        });
+
+        this.eList.on('click', '.todo__list-item', function () {
+            var COMPLETED_CLASS = 'todo__list-item_completed_yes';
+            var item = $(this);
+
+            item.hasClass(COMPLETED_CLASS) ?
+                item.removeClass(COMPLETED_CLASS) :
+                item.addClass(COMPLETED_CLASS);
+        });
+
+        this.eList.on('click', '.todo__list-item-remove', function (e) {
+            $(this).closest('.todo__list-item').remove();
+        });
+    }
+
+    Todo.prototype.addItem = function (text, isCompleted) {
+        var item = $(
+            '<li class="todo__list-item m-2 p-2">' +
+            '<span class="todo__list-item-text"></span>' +
+            '<span class="todo__list-item-remove">' +
+            '<i class="fas fa-trash p-2 border border-danger rounded text-danger cross"></i>' +
+            '</span>' +
+            '</li>'
+        );
+
+        if (isCompleted) {
+            item.addClass('todo__list-item_completed_yes');
+        }
+
+
+        item.find('.todo__list-item-text').text(text);
+
+        this.eList.append(item);
+    }
+    var todo = new Todo($('#list'));
+</script>

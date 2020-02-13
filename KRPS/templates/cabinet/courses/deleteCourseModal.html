@@ -1,9 +1,10 @@
-<div class="modal fade" id="modalDeleteKurs" tabindex="-1" role="dialog" aria-labelledby="modalDeleteKurs" aria-hidden="true">
+<div class="modal fade" id="modalDeleteCourse" tabindex="-1" role="dialog" aria-labelledby="modalDeleteKurs"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form method="POST">
+            <form id="removeCourseForm" action="/cabinet/" method="POST">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Подтверждение действия</h5>
+                    <h5 class="modal-title">Подтверждение действия</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -13,10 +14,37 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-danger">Удалить</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Отмена</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        aria-label="Close">Отмена</button>
+                        <!--{% csrf_token %}-->
                 </div>
-            </form>    
+            </form>
         </div>
     </div>
 </div>
-</div>
+<script>
+let idCourse
+    $('#modalDeleteCourse').on('show.bs.modal', function (event) {
+        let delBtn = $(event.relatedTarget)
+        let modal = $(this)
+        modal.find('#idCourse')
+        idCourse = delBtn.data('idCourse')
+    })
+    let frmDeleteCourse = $('#removeCourseForm');
+    frmDeleteCourse.submit(function () {
+        $.ajax({
+            url:'/cabinet/',
+            type: 'POST',
+            data:
+            {
+            'delCourse_id' : idCourse,
+            'csrfmiddlewaretoken': '{{ csrf_token }}',
+            'typeAction':'deleteCourse'
+            },
+            success:  () => {
+                location.reload()
+            }
+        });
+        return false;
+    });
+</script>

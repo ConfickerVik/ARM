@@ -12,12 +12,12 @@
             <div class="modal-body">
                 <form method="POST">
                     <div class="form-group">
-                            <label for="formGroupExampleInput">Тема занятия</label>
-                            <input type="text" class="form-control">
+                            <label>Тема занятия</label>
+                            <input id ="themeOflesson" type="text" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="formGroupExampleInput">Тип занятия</label>
-                        <select class="custom-select" required>
+                        <label >Тип занятия</label>
+                        <select id="selectTypeLesson" class="custom-select" required>
                                 <option value="">Выберите тип занятия</option>
                                 <option value="1">Лекция</option>
                                 <option value="2">Практическое занятие</option>
@@ -27,22 +27,20 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="example-date-input" class="col-xs-2 col-form-label">Дата</label>
+                        <label class="col-xs-2 col-form-label">Дата</label>
                             <div class="col-xs-10">
-                              <input class="form-control" type="date" value="2020-01-27" id="example-date-input">
+                              <input id="dateLesson" class="form-control" type="date" value="2020-01-27" id="example-date-input">
                             </div>
                     </div>        
+                    
                     <div class="form-group">
-                        <label for="formGroupExampleInput">Материал</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" cols="9"></textarea>
+                        <label >Комментарий</label>
+                        <textarea  id="LessonComment" class="form-control" rows="3" cols="9"></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="formGroupExampleInput">Комментарий</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" cols="9"></textarea>
-                    </div>
+                    {% include 'cabinet/courses/course/todoList.html' %}
 
                     <div class="modal-footer">
-                      <button type="submit" class="btn btn-success" >Добавить</button>
+                      <button id="BtnEditLesson" type="submit" class="btn btn-success" >Изменить</button>
                       <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Отмена</button>
                     </div>
                 </form>
@@ -50,4 +48,18 @@
     
           </div>
         </div>
-      </div><!-- /.Modal -->
+      </div>
+
+
+      <script>
+        let editIdLesson
+        $('modalEditLesson').on('show.bs.modal', function (event) {
+          let editBtn = $(event.relatedTarget)
+          let modal = $(this)
+          editIdLesson = editBtn.data('idLesson')
+          modal.find('#themeOflesson').val(editBtn.data('themeOflesson'))
+          modal.find('#selectTypeLesson').val(editBtn.data('selectTypeLesson'))
+          modal.find('#dateLesson').val(editBtn.data('dateLesson'))
+          modal.find('#LessonComment').val(editBtn.data('LessonComment'))
+        })
+      </script>

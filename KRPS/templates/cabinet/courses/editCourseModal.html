@@ -1,40 +1,78 @@
 <!-- модальное окно редактирования курса-->
-<div class="modal fade" id="modalEditKurs" tabindex="-1" role="dialog" aria-labelledby="modalEditKurs" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Общее редактирование курса</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form method="POST">
-                <div class="form-group">
-                  <label>Навание дисциплины</label>
-                  <input type="text" class="form-control">
-                </div>
+<div class="modal fade" id="modalEditKurs" tabindex="-1" role="dialog" aria-labelledby="modalEditKurs"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Общее редактирование курса</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST">
+          <div class="form-group">
+            <label>Навание дисциплины</label>
+            <input type="text" id="nameCourse" class="form-control">
+          </div>
 
-                <div class="form-group">
-                  <label>Группа</label>
-                  <input type="text" class="form-control">
-                </div>
+          <div class="form-group">
+            <label>Группа</label>
+            <input type="text" id="groupCourse" class="form-control">
+          </div>
 
-                <div class="form-group">
-                  <label>Университет</label>
-                  <input type="text" class="form-control">
-                </div>
+          <div class="form-group">
+            <label>Университет</label>
+            <input type="text" id="universityCourse" class="form-control">
+          </div>
 
-                <div class="form-group">
-                  <label>Год обучения</label>
-                  <input type="text" class="form-control">
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-success">Изменить</button>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Отмена</button>
-                </div>
-            </form>        
-        </div>
+          <div class="form-group">
+            <label>Год обучения</label>
+            <input type="text" id="yearCourse" class="form-control">
+          </div>
+          <div class="modal-footer">
+            <button id="BtnEditCourse" type="button" class="btn btn-success">Изменить</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Отмена</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+</div>
+<script>
+  let editIdCourse
+  $('#modalEditKurs').on('show.bs.modal', function (event) {
+    let editBtn = $(event.relatedTarget)
+    let modal = $(this)
+    editIdCourse = editBtn.data('idCourse')
+    modal.find('#nameCourse').val(editBtn.data('nameCourse'))
+    modal.find('#groupCourse').val(editBtn.data('groupCourse'))
+    modal.find('#yearCourse').val(editBtn.data('yearCourse'))
+    modal.find('#universityCourse').val(editBtn.data('universityCourse'))
+
+  })
+
+  $('#BtnEditCourse').click(function () {
+    let name_dis = $("#nameCourse").val()
+    let group_name = $("#groupCourse").val()
+    let university = $("#universityCourse").val()
+    let year_education = $("#yearCourse").val()
+    $.ajax({
+      url: '/cabinet/',
+      type: 'POST',
+      data: {
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
+        'typeAction': 'editCourse',
+        'id_course': editIdCourse,
+        'name_dis': name_dis,
+        'group_name': group_name,
+        'university': university,
+        'year_education': year_education
+      },
+      success: function (data) {
+        location.reload()
+      },
+    });
+    return false;
+  });
+</script>
