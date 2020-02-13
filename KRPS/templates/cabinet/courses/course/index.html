@@ -17,9 +17,11 @@
     <div class="col-12 p-2">
         <a href="/cabinet/"><button type="button" class="btn btn-primary btn-lg m-2"><i class="fas fa-arrow-left"></i>
                 Назад </button></a>
-                     
-        <button type="button" class="btn btn-danger btn-lg m-2" data-toggle="modal" data-target="#modalDeleteAboutCourse"><i class="fas fa-trash" ></i> Удалить</button>
-        <button type="button" class="btn btn-info btn-lg m-2" data-toggle="modal" data-target="#editAboutCourseModal"><i class="fas fa-edit" ></i> Изменить</button>
+
+        <button type="button" class="btn btn-danger btn-lg m-2" data-toggle="modal"
+            data-target="#modalDeleteAboutCourse" data-id-course="{{course.id_course}}"><i class="fas fa-trash"></i> Удалить</button>
+        <button type="button" class="btn btn-info btn-lg m-2" data-toggle="modal" data-target="#editAboutCourseModal"><i
+                class="fas fa-edit"></i> Изменить</button>
         <button class="btn btn-primary btn-lg m-2" type="button" data-toggle="collapse" data-target="#collapseExample"
             aria-expanded="false" aria-controls="collapseExample">
             Описание курса
@@ -36,7 +38,7 @@
                     <p>Год обучения: {{course.year_education}}</p>
                 </div>
                 <div class="col-6">
-                    <p>Кол-во студентов: {{course.count_student}}</p>
+                    <p>Кол-во студентов: {{course.countSrudents}}</p>
                     <p>Кол-во часов: {{course.hours_eucation}}</p>
                     <p></p>
                 </div>
@@ -62,7 +64,8 @@
         <h1 class="display-4">Занятия</h1>
     </div>
     <div class="col-12">
-        <button type="button" id="buttonAddKurs" class="btn btn-success my-3 btn-lg"   data-toggle="modal" data-target="#modalAddLesson">Добавить занятие</button>
+        <button type="button" id="buttonAddKurs" class="btn btn-success my-3 btn-lg" data-toggle="modal"
+            data-target="#modalAddLesson">Добавить занятие</button>
     </div>
     <div class="col-12">
         <table style="font-size:1.2rem" class="table table-striped table-hover table-dark m-0">
@@ -84,12 +87,12 @@
                     <td>{{lesson.date}}</td>
                     <td>{{lesson.name}}</td>
                     <td class="text-right">
-                            <style>
-                                .cross { cursor: pointer; }
-                            </style>
-                        <i data-toggle="modal" data-target="#modalEditLesson" class="fas fa-edit p-2 border border-info rounded text-info cross"> </i>
-                        <i data-toggle="modal" data-target="#modalDeleteLesson" class="fas fa-trash p-2 border border-danger rounded text-danger cross"></i>
+                        <i data-toggle="modal" data-target="#modalWatchLesson" class="fas fa-eye p-2 border border-primary rounded text-primary cross"></i>
 
+                        <i data-toggle="modal" data-target="#modalEditLesson"
+                            class="fas fa-edit p-2 border border-info rounded text-info cross"> </i>
+                        <i data-toggle="modal" data-target="#modalDeleteLesson"
+                            class="fas fa-trash p-2 border border-danger rounded text-danger cross"></i>
                     </td>
                 </tr>
                 {% endfor %}
@@ -106,12 +109,12 @@
     </div>
 </div>
 
-{% include 'cabinet/courses/course/addLessonModal.html' %}
 {% include 'cabinet/courses/course/deleteAboutCourseModal.html' %}
-{% include 'cabinet/courses/course/deleteLessonModal.html' %}
 {% include 'cabinet/courses/course/editAboutCourseModal.html' %}
+{% include 'cabinet/courses/course/addLessonModal.html' %}
+{% include 'cabinet/courses/course/watchLessonModal.html' %}
+{% include 'cabinet/courses/course/deleteLessonModal.html' %}
 {% include 'cabinet/courses/course/editLessonModal.html' %}
-
 
 <script>
     setTimeout(() => {

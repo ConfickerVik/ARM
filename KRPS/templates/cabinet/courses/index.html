@@ -23,25 +23,24 @@
             <td>{{course.group_name}}</td>
             <td>{{course.university}}</td>
             <td class="text-right">
+                    <style>
+                        .cross { cursor: pointer; }
+                    </style>
+                <i onclick="document.location='/cabinet/courses/{{course.id}}/'" class="fas fa-eye p-2 border border-primary rounded text-primary cross"></i>
                 <i 
-                    onclick="document.location='/cabinet/courses/{{course.id_course}}/'" 
-                    class="fas fa-eye p-2 border border-primary rounded text-primary cross"
+                class="fas fa-edit p-2 border border-info rounded text-info cross" 
+                data-toggle="modal" 
+                data-target="#modalEditKurs" 
+                data-id-course="{{course.id_course}}"
+                data-name-course="{{course.name}}"
+                data-group-course="{{course.group_name}}"
+                data-university-course="{{course.university}}"
+                data-year-course="{{course.year_education}}"
                 ></i>
-                <i 
-                    data-toggle="modal" 
-                    data-target="#modalEditKurs" 
-                    data-idCourse={{course.id}}
-                    data-nameCourse={{course.name}}
-                    data-groupCourse={{course.group_name}}
-                    data-universityCourse={{course.university}}
-                    data-yearCourse={{course.year_education}}
-                    class="fas fa-edit p-2 border border-info rounded text-info cross" 
-                ></i>
-                <i data-toggle="modal" data-target="#modalDeleteKurs" class="fas fa-trash p-2 border border-danger rounded text-danger cross"></i>
+                <i data-toggle="modal" data-target="#modalDeleteCourse" class="fas fa-trash p-2 border border-danger rounded text-danger cross" data-id-course="{{course.id_course}}"></i>
             </td>
         </tr>
         {% endfor %}
-        
         <tr>
             <th colspan="5" scope="row">
                 <button type="button" class="btn rounded-0 bg-dark btn-lg btn-block btn-outline-success m-0" data-toggle="modal" data-target="#modalAddKurs">
@@ -49,9 +48,9 @@
                 </button>
             </th>
         </tr>
-    	
     </tbody>
 </table>
+
 {% include 'cabinet/courses/addCourseModal.html' %}
 {% include 'cabinet/courses/editCourseModal.html' %}
 {% include 'cabinet/courses/deleteCourseModal.html' %}
