@@ -44,6 +44,7 @@ def editCourseModal(request):
 	connectMySQL.commit()
 
 def cabinet(request):
+	courses = {}
 	print(request.POST)
 	if request.POST:
 		if request.POST.get('typeAction') == 'addCourse':
