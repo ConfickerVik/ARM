@@ -1,3 +1,4 @@
+<!--просмотр занятий-->
 <div class="modal fade" id="modalWatchLesson" tabindex="-1" role="dialog" aria-labelledby="modalDeleteKurs"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -10,13 +11,51 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                <fieldset disabled>
+                        <form method="POST">
+                            <div class="form-group">
+                                <label>Тема занятия</label>
+                                <input id ="themeOflesson" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label >Тип занятия</label>
+                            <select id="selectTypeLesson" class="custom-select" required>
+                                    <option value="">Выберите тип занятия</option>
+                                    <option value="Лекция">Лекция</option>
+                                    <option value="Практическое занятие">Практическое занятие</option>
+                                    <option value="Лабораторная работа">Лабораторная работа</option>
+                                    <option value="Контрольня работа">Контрольня работа</option>
+                                    <option value="Экзамен">Экзамен</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-2 col-form-label">Дата</label>
+                                <div class="col-xs-10">
+                                    <input id="dateLesson" class="form-control" type="text">
+                                </div>
+                        </div>        
+                     </fieldset>
                     {% include 'cabinet/courses/course/todoList.html' %}
+                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Оценки</button>
+                    <button type="submit" class="btn btn-success">Сохранить</button>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Отмена</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
+
+<script>
+    let watchIdLesson
+    $('#modalWatchLesson').on('show.bs.modal', function (event) {
+      let editBtn = $(event.relatedTarget)
+      let modal = $(this)
+      editIdLesson = editBtn.data('idLesson')
+      modal.find('#themeOflesson').val(editBtn.data('nameLesson'))
+      modal.find('#selectTypeLesson').val(editBtn.data('typeLesson'))
+      modal.find('#dateLesson').val(editBtn.data('dateLesson'))
+    });
+  </script>

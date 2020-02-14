@@ -27,6 +27,30 @@
 	z-index: -1;
 }
 
+
 .schedule-card{
   min-height: 250px;
+}
+.cross {cursor: pointer;}
+
+#studentsTable td{
+  min-width: 160px;
+  max-width: 160px;
+
+}
+#lecTag{
+  background: #5181B8;
+  font-size: 0.8rem;
+}
+#labTag{
+  background: #57B8B5;
+  font-size: 0.8rem;
+}
+#semTag{
+  background: #B86993;
+  font-size: 0.8rem;
+}
+#exmTag{
+  background: #B84B41;
+  font-size: 0.8rem;
 }

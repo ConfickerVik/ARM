@@ -1,22 +1,46 @@
 <!-- удаление занятия-->
-<div class="modal fade" id="modalDeleteLesson" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLesson" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <form method="POST">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Подтверждение действия</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Вы действительно хотите удалить занятие?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger">Удалить</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Отмена</button>
-                    </div>
-                </form>
-            </div>
+<div class="modal fade" id="modalDeleteLesson" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLesson"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form id="removeLessonForm" method="POST" action="/cabinet/courses/">
+                <div class="modal-header">
+                    <h5 class="modal-title">Подтверждение действия</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Вы действительно хотите удалить занятие?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="BtnRemoveLesson" class="btn btn-danger">Удалить</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Отмена</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
+
+
+<script>
+    let idLesson
+    $('#modalDeleteLesson').on('show.bs.modal', function (event) {
+        let delBtn = $(event.relatedTarget)
+        idLesson = delBtn.data('idLesson')
+    })
+    $('#BtnRemoveLesson').click(() => {
+        $.ajax({
+            type: 'POST',
+            data: {
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+                'typeAction': 'deleteLesson',
+                'delCourse_id': idLesson
+            },
+            success: () => {
+                location.reload()
+            }
+        });
+        return false;
+    });
+</script>
