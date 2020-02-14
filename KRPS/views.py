@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
 from KRPS.MySQLdb import MySQLDBConnect
+import datetime
 
 
 DBConnect = MySQLDBConnect()
@@ -84,10 +85,13 @@ def addLesson(request):
 	connectMySQL.commit() 
 
 def editLesson(request):
+	print(request.POST)
 	id_lesson = request.POST.get('id_lesson')
 	name = request.POST.get('name')
 	typeLesson = request.POST.get('type')
 	date = request.POST.get('date')
+	day, month, year = date.split(".")
+	date = datetime.datetime(int(year), int(month),int(day))
 	editLessonQuery = "UPDATE krps_db.lessons SET type = '%s', date = '%s', name = '%s' WHERE id_lesson = '%s';" % (typeLesson, date, name, id_lesson)
 	DBConnect.query(connectMySQL, editLessonQuery)
 	connectMySQL.commit() 
@@ -103,7 +107,6 @@ def course(request, course_id):
 		monthDate = dateDict.month
 		dayDate = dateDict.day
 		lesson['date'] = "%s.%s.%s" % (dayDate, monthDate, yearDate)
-	print(lessons)
 	if request.POST:
 		if request.POST.get('typeAction') == 'deleteCourse':
 			deleteCourse(request)

@@ -15,11 +15,11 @@
                         <form method="POST">
                             <div class="form-group">
                                 <label>Тема занятия</label>
-                                <input id ="themeOflesson" type="text" class="form-control">
+                                <input id ="themeOflesson1" type="text" class="form-control">
                         </div>
                         <div class="form-group">
                             <label >Тип занятия</label>
-                            <select id="selectTypeLesson" class="custom-select" required>
+                            <select id="selectTypeLesson1" class="custom-select" required>
                                     <option value="">Выберите тип занятия</option>
                                     <option value="Лекция">Лекция</option>
                                     <option value="Практическое занятие">Практическое занятие</option>
@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <label class="col-xs-2 col-form-label">Дата</label>
                                 <div class="col-xs-10">
-                                    <input id="dateLesson" class="form-control" type="text">
+                                    <input id="dateLesson1" class="form-control" type="text">
                                 </div>
                         </div>        
                      </fieldset>
@@ -54,8 +54,8 @@
       let editBtn = $(event.relatedTarget)
       let modal = $(this)
       editIdLesson = editBtn.data('idLesson')
-      modal.find('#themeOflesson').val(editBtn.data('nameLesson'))
-      modal.find('#selectTypeLesson').val(editBtn.data('typeLesson'))
-      modal.find('#dateLesson').val(editBtn.data('dateLesson'))
+      modal.find('#themeOflesson1').val(editBtn.data('nameLesson'))
+      modal.find('#selectTypeLesson1').val(editBtn.data('typeLesson'))
+      modal.find('#dateLesson1').val(editBtn.data('dateLesson'))
     });
   </script>
