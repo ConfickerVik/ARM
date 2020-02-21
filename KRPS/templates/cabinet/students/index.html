@@ -3,20 +3,20 @@
 {% block content %}
     <h1 class="display-4">Студенты</h1>
     <div class="input-group mb-2">
-        <select class="custom-select">
-          <option value="" hidden>Дисциплина</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
+        <select class="custom-select" id="select_course">
+          <option value="" hidden>Курсы</option>
+          {% for course in courses %}
+            <option value="{{course.name}}">{{course.name}}</option>
+          {% endfor %}
         </select>
-        <select class="custom-select">
+        <select class="custom-select" id="select_group">
             <option value="" hidden>Группа</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
+            {% for group in groups %}
+            <option value="{{group.name}}">{{group.name}}</option>
+            {% endfor %}
           </select>
         <div class="input-group-append">
-          <button class="btn btn-success" type="button">Показать</button>
+          <button id="showStudentsMarks" class="btn btn-success" type="button">Показать</button>
         </div>
       </div>
     <table style="font-size:1.2rem" class="table table-striped table-hover table-dark m-0">
@@ -24,72 +24,17 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">ФИО</th>
-                <th scope="col">ДАТА1 <span id="lecTag">ЛЕК</span></th>
-                <th scope="col">ДАТА1 <span id="labTag">ЛАБ</span></th>
-                <th scope="col">ДАТА2 <span id="semTag">СЕМ</span></th>
-                <th scope="col">ДАТА3 <span id="lecTag">ЛЕК</span></th>
-                <th scope="col">ДАТА3 <span id="lecTag">ЛЕК</span></th>
-                <th scope="col">ДАТА4 <span id="lecTag">ЛЕК</span></th>
-                <th scope="col">ДАТА4 <span id="labTag">ЛАБ</span></th>
-                <th scope="col">ДАТА5 <span id="exsTag">ЭКЗ</span></th>
+                <th scope="col">ДАТА1<span id="lecTag">ЛЕК</span></th>
+                <th scope="col">ДАТА1<span id="labTag">ЛАБ</span></th>
+                <th scope="col">ДАТА2<span id="semTag">СЕМ</span></th>
+                <th scope="col">ДАТА3<span id="exmTag">ЭКЗ</span></th>
             </tr>
         </thead>
         <tbody id="studentsTable"> 
+            {% for student in students %}
             <tr>
                 <th scope="row">1</th>
-                <td>Аниме Г.Г.</td>
-                <td>
-                    <div class="input-group">
-                        <input type="checkbox" style="width:40px; height:40px;">
-                        <select class="custom-select">
-                            <option value="" hidden>Оценка</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                          </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="input-group">
-                        <input type="checkbox" style="width:40px; height:40px;">
-                        <select class="custom-select">
-                            <option value="" hidden>Оценка</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                          </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="input-group">
-                        <input type="checkbox" style="width:40px; height:40px;">
-                        <select class="custom-select">
-                            <option value="" hidden>Оценка</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                          </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="input-group">
-                        <input type="checkbox" style="width:40px; height:40px;">
-                        <select class="custom-select">
-                            <option value="" hidden>Оценка</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                          </select>
-                    </div>
-                </td>
+                <td>{{student.lastname_stud}} {{student.firstname_stud}} {{student.middlename_stud}}</td>
                 <td>
                     <div class="input-group">
                         <input type="checkbox" style="width:40px; height:40px;">
@@ -146,4 +91,13 @@
         </tbody>
     </table>
     
+<script>
+    $('#showStudentsMarks').click(()=>{
+        let selectGroup = $('#select_group').val()
+        let selectCourse =$('#select_course').val()
+        
+        location.replace(`/cabinet/students/${selectCourse}&${selectGroup}`)
+    })
+</script>
+
 {% endblock %}

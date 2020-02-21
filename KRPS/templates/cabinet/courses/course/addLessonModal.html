@@ -1,4 +1,3 @@
-
 <!-- Модальное окно добавления занятия -->
 <div class="modal fade" id="modalAddLesson" tabindex="-1" role="dialog" aria-labelledby="modalAddLesson" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -12,34 +11,29 @@
         <div class="modal-body">
             <form method="POST">
                 <div class="form-group">
-                        <label >Тема занятия</label>
-                        <input name="topicLesson" type="text" class="form-control">
+                    <label >Тема занятия</label>
+                    <input id="topicLesson" type="text" class="form-control">
                 </div>
                 <div class="form-group">
                     <label >Тип занятия</label>
-                    <select name="selectLessons" class="custom-select" required>
-                            <option value="">Выберите тип занятия</option>
-                            <option value="1">Лекция</option>
-                            <option value="2">Практическое занятие</option>
-                            <option value="3">Лабораторная работа</option>
-                            <option value="4">Контрольня работа</option>
-                            <option value="5">Экзамен</option>
+                    <select id="selectTypeLessons" class="custom-select" required>
+                            <option value="" hidden>Выберите тип занятия</option>
+                            <option value="Лекция">Лекция</option>
+                            <option value="Практическое занятие">Практическое занятие</option>
+                            <option value="Лабораторная работа">Лабораторная работа</option>
+                            <option value="Контрольня работа">Контрольня работа</option>
+                            <option value="Экзамен">Экзамен</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label  class="col-xs-2 col-form-label">Дата</label>
-                        <div  name="dateLess" class="col-xs-10">
-                          <input class="form-control" type="date" value="2020-01-27" >
+                        <div class="col-xs-10">
+                          <input id="dateLess" class="form-control" type="date" value="2020-01-27" >
                         </div>
                 </div>        
-                <div class="form-group">
-                    <label>Комментарий</label>
-                    <textarea  name="lessComment" class="form-control"  rows="3" cols="8"></textarea>
-                </div>
-                {% include 'cabinet/courses/course/todoList.html' %}
 
                 <div class="modal-footer">
-                  <button id="BtnAddLesson" type="submit" class="btn btn-success">Добавить</button>
+                  <button id="BtnAddLesson" type="button" class="btn btn-success">Добавить</button>
                   <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Отмена</button>
                 </div>
             </form>
@@ -47,15 +41,33 @@
 
       </div>
     </div>
-  </div><!-- /.Modal -->
+  </div>
 
   <script>
+    let idCourseForLesson
+    $('#modalAddLesson').on('show.bs.modal', function (event) {
+        let delBtn = $(event.relatedTarget)
+        idCourseForLesson = delBtn.data('idCourse')
+    })
+
     $('#BtnAddLesson').click(function () {
-      let topicLesson = $("input[name = 'topicLesson']").val()
-      let selectLessons = $("input[name = 'selectLessons']").val()
-      let dateLess = $("input[name = 'dateLess']").val()
-      let lessComment = $("input[name = 'lessComment']").val()
-     
+      let topicLesson = $('#topicLesson').val()
+      let selectTypeLessons = $('#selectTypeLessons').val()
+      let dateLess = $('#dateLess').val()
+    $.ajax({
+      type: 'POST',
+      data: {
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
+        'typeAction': 'addLesson',
+        'id_course':idCourseForLesson,
+        'name': topicLesson,
+        'type': selectTypeLessons ,
+        'date': dateLess,
+      },
+      success: function (data) {
+        location.reload()
+      },
     });
-  
+    return false;
+  });
   </script>
