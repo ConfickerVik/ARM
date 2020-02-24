@@ -1,0 +1,25 @@
+
+@media (min-width: 576px) and (max-width: 767.98px) { 
+
+    .nav-content{
+        display: none;
+
+    }
+
+    .icons{
+        display: flex;
+        justify-content: center;
+    }
+ } 
+
+
+ @media (min-width: 768px) and (max-width: 991.98px) { 
+    .nav-content{
+        display: none;
+    }
+
+    .icons{
+        display: flex;
+        justify-content: center;
+    }
+ }

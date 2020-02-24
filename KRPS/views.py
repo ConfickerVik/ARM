@@ -86,3 +86,6 @@ def schedule(request):
 
 def students(request):
 	return render(request, 'cabinet/students/index.html')
+
+def finalMark(request):
+	return render(request, 'cabinet/finalMark/index.html')	
