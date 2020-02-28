@@ -29,7 +29,7 @@ CREATE TABLE `attendance` (
   `id_lessons` int(11) DEFAULT NULL,
   `id_student` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_attendance`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,15 +50,15 @@ DROP TABLE IF EXISTS `courses`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `courses` (
   `id_course` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
+  `name` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `year_education` int(4) NOT NULL,
-  `university` varchar(45) NOT NULL,
-  `group_name` varchar(45) NOT NULL,
+  `university` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `group_name` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `hours_eucation` int(11) DEFAULT NULL,
-  `comment` varchar(100) DEFAULT NULL,
+  `comment` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id_course`),
   KEY `group_id_idx` (`group_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +67,7 @@ CREATE TABLE `courses` (
 
 LOCK TABLES `courses` WRITE;
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
-INSERT INTO `courses` VALUES (1,'Программирование',2015,'ИрГУПС','ПИ.1-16-1',144,'comment1'),(2,'Математика',2015,'ИрГУПС','ПИ.1-16-1',72,'comment2'),(3,'Алгебра и геометрия',2015,'ИрГУПС','ПИ.1-16-1',188,'comment3'),(4,'Экономика',2015,'ИрГУПС','ПИ.1-16-1',36,'comment4'),(5,'Физика',2015,'ИрГУПС','ПИ.1-16-1',18,'comment5'),(62,'Тестирование',2020,'ВАНЯ ЛОХ','ПИС',56,'Курс такое себе конечно');
+INSERT INTO `courses` VALUES (1,'Программирование',2015,'ИрГУПС','ПИ.1-16-1',144,'comment1'),(2,'Математика',2015,'ИрГУПС','ПИ.1-16-1',72,'comment2'),(3,'Алгебра и геометрия',2015,'ИрГУПС','ПИ.1-16-1',188,'comment3'),(4,'Экономика',2015,'ИрГУПС','ПИ.1-16-1',36,'comment4'),(5,'Физика',2015,'ИрГУПС','ПИ.1-16-1',18,'comment5'),(62,'Тестирование',2020,'qwe','ПИС',56,'Курс такое себе конечно');
 /*!40000 ALTER TABLE `courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,12 +80,12 @@ DROP TABLE IF EXISTS `estimation`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `estimation` (
   `id_estimation` int(11) NOT NULL AUTO_INCREMENT,
-  `estimation` varchar(45) DEFAULT NULL,
+  `estimation` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `id_lesson` int(11) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `id_student` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_estimation`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,6 +94,7 @@ CREATE TABLE `estimation` (
 
 LOCK TABLES `estimation` WRITE;
 /*!40000 ALTER TABLE `estimation` DISABLE KEYS */;
+INSERT INTO `estimation` VALUES (1,'3',1,'2015-01-05',1),(2,'3',7,'2015-01-11',1),(3,'4',12,'2014-02-15',2),(4,'2',2,'2015-01-06',2),(5,'2',1,'2015-01-05',2),(6,'4',7,'2015-01-11',2),(7,'3',12,'2014-02-15',1);
 /*!40000 ALTER TABLE `estimation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -106,11 +107,11 @@ DROP TABLE IF EXISTS `group`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `group` (
   `id_group` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
-  `university` varchar(45) NOT NULL,
+  `name` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `university` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `count_student` int(11) NOT NULL,
   PRIMARY KEY (`id_group`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,11 +134,11 @@ DROP TABLE IF EXISTS `lessons`;
 CREATE TABLE `lessons` (
   `id_lesson` int(11) NOT NULL AUTO_INCREMENT,
   `id_course` int(11) NOT NULL,
-  `type` varchar(45) NOT NULL,
+  `type` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `date` date NOT NULL,
-  `name` varchar(60) NOT NULL,
+  `name` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id_lesson`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,7 +147,7 @@ CREATE TABLE `lessons` (
 
 LOCK TABLES `lessons` WRITE;
 /*!40000 ALTER TABLE `lessons` DISABLE KEYS */;
-INSERT INTO `lessons` VALUES (1,1,'лаб','2015-01-05','Лаб 1'),(2,2,'лек','2015-01-06','Лек 1'),(3,3,'лек','2015-01-07','Лек 1'),(4,4,'лек','2015-01-07','Лек 1'),(5,3,'лек','2015-01-07','Лек 1'),(6,2,'лек','2015-01-07','Лек 1'),(7,1,'лаб','2015-01-07','Лаб 2'),(8,3,'лаб','2015-01-07','Лаб 1'),(9,4,'лаб','2015-01-07','Лаб 1'),(10,2,'лек','2015-01-07','Лек 2'),(12,1,'Практическое занятие','2020-02-14','В мире птиц');
+INSERT INTO `lessons` VALUES (1,1,'лаб','2015-01-05','Лаб 1'),(2,2,'лек','2015-01-06','Лек 1'),(3,3,'лек','2015-01-07','Лек 1'),(4,4,'лек','2015-01-08','Лек 1'),(5,3,'лек','2015-01-09','Лек 1'),(6,2,'лек','2015-01-10','Лек 1'),(7,1,'лаб','2015-01-11','Лаб 2'),(8,3,'лаб','2015-01-12','Лаб 1'),(9,4,'лаб','2015-01-13','Лаб 1'),(10,2,'лек','2015-01-14','Лек 2'),(12,1,'Лекция','2014-02-15','В мире птиц 2');
 /*!40000 ALTER TABLE `lessons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,15 +160,15 @@ DROP TABLE IF EXISTS `prepods`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `prepods` (
   `id_prepod` int(11) NOT NULL AUTO_INCREMENT,
-  `lastname_prepod` varchar(45) NOT NULL,
-  `firstname_prepod` varchar(45) NOT NULL,
-  `middlename_prepod` varchar(45) NOT NULL,
-  `disciplines_prepod` varchar(45) NOT NULL,
-  `department_prepod` varchar(45) NOT NULL,
-  `login_prepod` varchar(45) NOT NULL,
-  `pass_prepod` varchar(45) NOT NULL,
+  `lastname_prepod` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `firstname_prepod` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `middlename_prepod` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `disciplines_prepod` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `department_prepod` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `login_prepod` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `pass_prepod` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id_prepod`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -189,12 +190,12 @@ DROP TABLE IF EXISTS `students`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `students` (
   `id_students` int(11) NOT NULL AUTO_INCREMENT,
-  `lastname_stud` varchar(45) NOT NULL,
-  `firstname_stud` varchar(45) NOT NULL,
-  `middlename_stud` varchar(45) NOT NULL,
-  `group_stud` varchar(15) NOT NULL,
+  `lastname_stud` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `firstname_stud` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `middlename_stud` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `group_stud` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id_students`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -216,9 +217,9 @@ DROP TABLE IF EXISTS `university`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `university` (
   `id_university` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
+  `name` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id_university`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -244,4 +245,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-14 23:25:58
+-- Dump completed on 2020-02-28 22:49:49

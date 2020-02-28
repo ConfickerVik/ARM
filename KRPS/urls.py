@@ -23,6 +23,7 @@ urlpatterns = [
     path('cabinet/courses/<int:course_id>/', views.course, name ="course"),
 	path('cabinet/schedule/', views.schedule, name ="schedule"),
 	path('cabinet/students/', views.students, name ="students"),
-    path('cabinet/students/<str:course_name>&<str:group_name>/', views.marks),
+    path('cabinet/students/<int:course_name>&<str:group_name>/', views.marks),
     path('admin/', admin.site.urls),
+    path('cabinet/finalMark/', views.finalMark, name ="finalMark"),
 ]

@@ -33,9 +33,9 @@
         $.ajax({
             type: 'POST',
             data: {
+                'delCourse_id': idLesson,
                 'csrfmiddlewaretoken': '{{ csrf_token }}',
-                'typeAction': 'deleteLesson',
-                'delCourse_id': idLesson
+                'typeAction': 'deleteLesson'
             },
             success: () => {
                 location.reload()
