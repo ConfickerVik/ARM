@@ -137,7 +137,6 @@ def students(request):
 	return render(request, 'cabinet/students/index.html', context={'courses':courses, 'groups':groups})
 
 def editEstimation(request):
-	#print(request.POST)
 	id_estimation = request.POST.get('id_estimation')
 	estimation = request.POST.get('mark')
 	editLessonQuery = "UPDATE krps_db.estimation SET estimation = '%s' WHERE id_estimation = '%s';" % (estimation, id_estimation)
@@ -176,7 +175,6 @@ def marks(request, course_name, group_name):
 				marksStudents[stud['id_students']]['marksEstimation'].append(marks[0])
 			else:
 				marksStudents[stud['id_students']]['marksEstimation'].append({'id_estimation': '0', 'estimation': '0', 'id_lesson': les['id_lesson'], 'date': les['date'], 'id_student': stud['id_students']})
-
 	#print(marksStudents)
 	if request.POST:
 		if request.POST.get('typeAction') == 'changeMark':
