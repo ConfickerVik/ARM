@@ -10,6 +10,8 @@
    <tr><td>&#127776;Иван Хмелев</td><td>&#128274;BackEnd</td></tr>
    <tr><td>Виктор Ощепков</td><td>&#128274;BackEnd</td></tr>
    <tr><td>Ярослав Татаринов</td><td>&#128736;FrontEnd</td></tr>
+   <tr><td>Алексей Алтаев</td><td>&#128736;FrontEnd</td></tr>
+   <tr><td>Анна Абдулина</td><td>&#128736;FrontEnd</td></tr>
    <tr><td>Лидия Морина</td> <td>&#128736;FrontEnd</td></tr>
    <tr><td>Игорь Глинский</td><td>&#128190;DataBase</td></tr>
    <tr><td>Ольга Зуева</td><td>&#9997;Design</td></tr>
