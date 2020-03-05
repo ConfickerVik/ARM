@@ -1,0 +1,12 @@
+ @media (max-width: 975px) {
+    .nav-content{
+        display: none;
+
+    }
+
+    .icons{
+        display: flex;
+        justify-content: center;
+    }
+}
+

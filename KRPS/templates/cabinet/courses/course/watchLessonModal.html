@@ -15,23 +15,23 @@
                         <form method="POST">
                             <div class="form-group">
                                 <label>Тема занятия</label>
-                                <input id ="themeOflesson1" type="text" class="form-control">
+                                <input id ="themeOflesson" type="text" class="form-control">
                         </div>
                         <div class="form-group">
                             <label >Тип занятия</label>
-                            <select id="selectTypeLesson1" class="custom-select" required>
-                                    <option value="">Выберите тип занятия</option>
-                                    <option value="Лекция">Лекция</option>
-                                    <option value="Практическое занятие">Практическое занятие</option>
-                                    <option value="Лабораторная работа">Лабораторная работа</option>
-                                    <option value="Контрольня работа">Контрольня работа</option>
-                                    <option value="Экзамен">Экзамен</option>
+                            <select id="selectTypeLesson" class="custom-select" required>
+                                <option value="">Выберите тип занятия</option>
+                                <option value="1">Лекция</option>
+                                <option value="2">Практическое занятие</option>
+                                <option value="3">Лабораторная работа</option>
+                                <option value="4">Контрольня работа</option>
+                                <option value="5">Экзамен</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-2 col-form-label">Дата</label>
                                 <div class="col-xs-10">
-                                    <input id="dateLesson1" class="form-control" type="text">
+                                    <input id="dateLesson" class="form-control" type="text">
                                 </div>
                         </div>        
                      </fieldset>
@@ -39,8 +39,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Отмена</button>
                     <button type="submit" class="btn btn-success">Сохранить</button>
-                    <button type="submit" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Отмена</button>
                 </div>
             </form>
         </div>
@@ -54,8 +54,8 @@
       let editBtn = $(event.relatedTarget)
       let modal = $(this)
       editIdLesson = editBtn.data('idLesson')
-      modal.find('#themeOflesson1').val(editBtn.data('nameLesson'))
-      modal.find('#selectTypeLesson1').val(editBtn.data('typeLesson'))
-      modal.find('#dateLesson1').val(editBtn.data('dateLesson'))
+      modal.find('#themeOflesson').val(editBtn.data('nameLesson'))
+      modal.find('#selectTypeLesson').val(editBtn.data('typeLesson'))
+      modal.find('#dateLesson').val(editBtn.data('dateLesson'))
     });
   </script>

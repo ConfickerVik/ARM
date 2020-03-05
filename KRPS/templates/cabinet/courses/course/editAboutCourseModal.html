@@ -75,7 +75,6 @@
     let year_education = $("#yearCourse").val()
     let hourse = $("#hoursCourse").val()
     let comment = $("#commentCourse").val()
-
     $.ajax({
       type: 'POST',
       data: {
@@ -87,7 +86,7 @@
         'university': university,
         'year_education': year_education,
         'hours_eucation': hourse,
-        'comment': comment
+        'comment': comment,
       },
       success: function () {
         location.reload()
