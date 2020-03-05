@@ -45,8 +45,8 @@
                 {% for mark in value.marksEstimation %}
                 <td>
                     <div class="input-group">
-                        <input type="checkbox" style="width:40px; height:40px;">
-                        <select onchange= "changeMark( {{mark.id_estimation}}, {{mark.id_student}}, {{mark.id_lesson}}, this)" class="custom-select">
+                        <input  type="checkbox" style="width:40px; height:40px;">
+                        <select onchange= "changeMark( {{mark.id_estimation}}, {{mark.id_student}}, {{mark.id_lesson}}, '{{mark.date}}', this)" class="custom-select">
                             {% if mark.estimation == '1' %}
                                 <option value="" hidden>Оценка</option>
                                 <option selected value="1">1</option>
@@ -108,6 +108,7 @@
     })
 	
 	
+<<<<<<< HEAD
 function changeMark(id_estimation, id_student, id_lesson, mark){
 
     alert(id_estimation)
@@ -128,6 +129,28 @@ function changeMark(id_estimation, id_student, id_lesson, mark){
     //     'Посещалка поменялась'
     //   },
     // });
+=======
+function changeMark(id_estimation, id_student, id_lesson, time_date, mark){
+    //alert(id_estimation)
+    //alert(id_student)
+    //alert(id_lesson)
+    //alert(mark.value)
+    $.ajax({
+      type: 'POST',
+      data: {
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
+        'typeAction': 'changeMark',
+        'time_date': time_date,
+        'id_estimation': id_estimation,
+        'id_student': id_student,
+        'id_lesson': id_lesson,
+        'mark':mark.value
+      },
+      success: function (data) {
+        location.reload()
+      },
+    });
+>>>>>>> 6fed1c6da23657b80b2c4d9a8d5dd8176bd16a6c
 }
 </script>
 
