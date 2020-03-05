@@ -70,8 +70,6 @@ def index(request):
 			return redirect('cabinet')
 	return render(request, 'auth/index.html', context={'title': title, 'login': login})
 	
-
-	
 def cabinet(request):
 	return render(request, 'cabinet/courses/index.html', context={'courses':courses})
 
@@ -85,7 +83,10 @@ def schedule(request):
 	return render(request, 'cabinet/schedule/index.html', context={'lessons':lessons})
 
 def students(request):
-	return render(request, 'cabinet/students/index.html')
+	return render(request, 'cabinet/students/index.html', context={'courses':courses})
 
 def finalMark(request):
 	return render(request, 'cabinet/finalMark/index.html')	
+
+
+

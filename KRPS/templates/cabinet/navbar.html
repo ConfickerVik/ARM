@@ -1,36 +1,43 @@
     <h5 class="p-2 text-center text-light">ФИО</h5>
-    
-      <ul style="font-size:1.2rem" class="nav nav-pills nav-fill flex-column">
-        <li class="nav-item text-left p-0">
-          <a class="nav-link text-light curses " href="/cabinet"><i class="fa fa-graduation-cap icons" aria-hidden="true"></i> <span class="nav-content">Курсы</span></a>
-        </li>
-        <li class="nav-item text-left p-0">
-          <a class="nav-link text-light schedule" href="/cabinet/schedule"><i class="fa fa-list-alt icons" aria-hidden="true"></i> <span class="nav-content">Расписание</span></a>
-        </li> 
-        <li class="nav-item text-left p-0">
-          <a class="nav-link text-light students" href="/cabinet/students"><i class="fa fa-users icons" aria-hidden="true"></i> <span class="nav-content">Журнал</span></a>
-        </li>
-        <li class="nav-item text-left p-0">
-          <a class="nav-link text-light students" href="/cabinet/finalMark"><i class="fas fa-marker icons" aria-hidden="true"></i> <span class="nav-content">Итоговая оценка</span></a>
-        </li>
-        <li class="nav-item text-left p-0">
-          <a class="nav-link text-light" href="#"><i class="fas fa-sign-out-alt icons"></i> <span class="nav-content">Выйти</span></a>
-        </li>
-      </ul>
+
+    <ul style="font-size:1.2rem" class="nav nav-pills nav-fill flex-column">
+      <li class="nav-item text-left p-0">
+        <a class="nav-link text-light curses " href="/cabinet"><i class="fa fa-graduation-cap icons"
+            aria-hidden="true"></i> <span class="nav-content">Курсы</span></a>
+      </li>
+      <li class="nav-item text-left p-0">
+        <a class="nav-link text-light schedule" href="/cabinet/schedule"><i class="fa fa-list-alt icons"
+            aria-hidden="true"></i> <span class="nav-content">Расписание</span></a>
+      </li>
+      <li class="nav-item text-left p-0">
+        <a class="nav-link text-light students" href="/cabinet/students"><i class="fa fa-users icons"
+            aria-hidden="true"></i> <span class="nav-content">Журнал</span></a>
+      </li>
+      <li class="nav-item text-left p-0">
+        <a class="nav-link text-light finalMark" href="/cabinet/finalMark"><i class="fas fa-marker icons"
+            aria-hidden="true"></i> <span class="nav-content">Итоговая оценка</span></a>
+      </li>
+      <li class="nav-item text-left p-0">
+        <a class="nav-link text-light" href="#"><i class="fas fa-sign-out-alt icons"></i> <span
+            class="nav-content">Выйти</span></a>
+      </li>
+    </ul>
 
 
-<script>
-  const activeURL = window.location.pathname
-  switch (activeURL) {
-    case '/cabinet/':
-      $('.curses').addClass('active')
-      break;
-    case '/cabinet/schedule/':
-      $('.schedule').addClass('active')
-      break;
-    case '/cabinet/students/':
-      $('.students').addClass('active')
-      break;
-  }
-</script>
-
+    <script>
+      const activeURL = window.location.pathname
+      switch (activeURL) {
+        case '/cabinet/':
+          $('.curses').addClass('active')
+          break;
+        case '/cabinet/schedule/':
+          $('.schedule').addClass('active')
+          break;
+        case '/cabinet/students/':
+          $('.students').addClass('active')
+          break;
+        case '/cabinet/finalMark/':
+          $('.finalMark').addClass('active')
+          break;
+      }
+    </script>
