@@ -4,8 +4,8 @@ import pymysql
 class MySQLDBConnect:
 	def connect(self):
 		connection = pymysql.connect(host='127.0.0.1',
-			user='test',
-			password='test',
+			user='root',
+			password='Pa$$w0rdSQL',
 			db='krps_db',
 			cursorclass=pymysql.cursors.DictCursor)
 		return connection

@@ -1,11 +1,100 @@
 {% extends 'cabinet/layout.html' %}
 
 {% block content %}
+<h1 class="display-4">Итоговая оценка</h1>
 
-<h1>Мяу</h1>
+<table style="font-size:1.4rem" class="table table-striped table-hover table-dark m-0"> 
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Правило</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody> 
+        <tr>
+            <th scope="row">1</th>
+            <td>Оценка</td>
+            <td class="text-right">
+                <i onclick="selectRule(this)" data-rule="mark" class="fas fa-check p-2 border border-primary rounded text-primary cross"></i>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Посещаемость</td>
+            <td class="text-right">
+                <i onclick="selectRule(this)" data-rule="attend" class="fas fa-check p-2 border border-primary rounded text-primary cross"></i>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>Оценка+посещаемость</td>
+            <td class="text-right">
+                <i onclick="selectRule(this)" data-rule="mark+attend" class="fas fa-check p-2 border border-primary rounded text-primary cross"></i>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="5" scope="row">
+                <div class="input-group mb-2">
+                    <select class="custom-select bg-dark text-light" id="select_course">
+                        <option value="" hidden>Курсы</option>
+                        {% for course in courses %}
+                        <option value="{{course.id_course}}">{{course.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <select class="custom-select bg-dark text-light" id="select_group">
+                        <option value="" hidden>Группа</option>
+                        {% for group in groups %}
+                        <option value="{{group.name}}">{{group.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </th>
+        </tr>
+        <th colspan="5" scope="row">
+            <button type="button" class="btn rounded-0 bg-dark btn-lg btn-block btn-outline-success m-0" id="showFinalMarks">
+                Показать
+            </button>
+        </th>
+    </tbody>
+</table>
 
+<hr>
 
+<table style="font-size:1.2rem" class="table table-striped table-hover table-dark m-0"> 
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">ФИО</th>
+            <th scope="col">Оценка</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for key, value in final.items %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{value.lastname_stud}} {{value.firstname_stud}} {{value.middlename_stud}}</td>
+            <td>{{value.fin}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
+<script>
+    let globalRule
+    const selectRule = (choice)=>{
+        $(".fa-check").removeClass('activeFinalBtn')
+        let choiceBtn = $(choice)
+        globalRule = choiceBtn.data('rule')
+        choiceBtn.addClass('activeFinalBtn')
+    }
 
+    $('#showFinalMarks').click(()=>{
+        let selectCourse =$('#select_course').val()
+        let selectGroup = $('#select_group').val()
+        
+        location.replace(`/cabinet/finalMark/${selectCourse}&${selectGroup}&${globalRule}`)
+    })
 
+</script>
 {% endblock %}
