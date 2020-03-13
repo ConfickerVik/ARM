@@ -5,7 +5,7 @@ class MySQLDBConnect:
 	def connect(self):
 		connection = pymysql.connect(host='127.0.0.1',
 			user='root',
-			password='qwerty90',
+			password='Pa$$w0rdSQL',
 			db='krps_db',
 			cursorclass=pymysql.cursors.DictCursor)
 		return connection
