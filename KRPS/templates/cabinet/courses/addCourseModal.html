@@ -7,27 +7,27 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-        </div>
+        </div> 
         <div class="modal-body">
-            <form method="POST">
+            <form method="POST" id="form-addCourseModal">
                 <div class="form-group">
                   <label>Навание дисциплины</label>
-                  <input name="name_dis" type="text" class="form-control">
+                  <input name="name_dis" required type="text" class="form-control">
                 </div>
 
                 <div class="form-group">
                   <label>Группа</label>
-                  <input name="group_name" type="text" class="form-control">
+                  <input name="group_name" required type="text" class="form-control">
                 </div>
 
                 <div class="form-group">
                   <label>Университет</label>
-                  <input name="university" type="text" class="form-control">
+                  <input name="university" required type="text" class="form-control">
                 </div>
 
                 <div class="form-group">
                   <label>Год обучения</label>
-                  <input name="year_education" type="text" class="form-control">
+                  <input name="year_education" type="text" required  pattern="[0-9]"   minlength="2" maxlength="4"  class="form-control">
                 </div>
                 <div class="modal-footer p-0 pt-2">
                   <button id="BtnAddCourse" type="button" class="btn btn-success">Добавить</button>

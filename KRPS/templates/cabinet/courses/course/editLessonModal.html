@@ -12,31 +12,28 @@
       <div class="modal-body">
         <form method="POST">
           <div class="form-group">
-            <label for="formGroupExampleInput">Тема занятия</label>
-            <input type="text" class="form-control">
+            <label>Тема занятия</label>
+            <input id="themeOflesson" type="text" class="form-control">
           </div>
           <div class="form-group">
-            <label for="formGroupExampleInput">Тип занятия</label>
-            <select class="custom-select" required>
-              <option value="">Выберите тип занятия</option>
-              <option value="1">Лекция</option>
-              <option value="2">Практическое занятие</option>
-              <option value="3">Лабораторная работа</option>
-              <option value="4">Контрольня работа</option>
-              <option value="5">Экзамен</option>
+            <label>Тип занятия</label>
+            <select id="selectTypeLesson" class="custom-select" required>
+              <option value="" hidden>Выберите тип занятия</option>
+              <option value="Лекция">Лекция</option>
+              <option value="Практическое занятие">Практическое занятие</option>
+              <option value="Лабораторная работа">Лабораторная работа</option>
+              <option value="Контрольня работа">Контрольня работа</option>
+              <option value="Экзамен hidden">Экзамен</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="example-date-input" class="col-xs-2 col-form-label">Дата</label>
-              <input class="form-control" type="date" value="2020-01-27" id="example-date-input">
+            <label class="col-xs-2 col-form-label">Дата</label>
+            <div class="col-xs-10">
+              <input id="dateLesson" required pattern="[0-9]"   minlength="2" maxlength="4" class="form-control" type="text">
+            </div>
           </div>
-          <div class="form-group">
-            <label for="formGroupExampleInput">Комментарий</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" cols="9"></textarea>
-          </div>
-          {% include 'cabinet/courses/course/todoList.html' %}
           <div class="modal-footer">
-            <button type="submit" class="btn btn-success">Добавить</button>
+            <button id="BtnEditLesson" type="button" class="btn btn-success">Изменить</button>
             <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Отмена</button>
           </div>
         </form>
@@ -45,3 +42,37 @@
     </div>
   </div>
 </div>
+
+
+<script>
+  let editIdLesson
+  $('#modalEditLesson').on('show.bs.modal', function (event) {
+    let editBtn = $(event.relatedTarget)
+    let modal = $(this)
+    editIdLesson = editBtn.data('idLesson')
+    modal.find('#themeOflesson').val(editBtn.data('nameLesson'))
+    modal.find('#selectTypeLesson').val(editBtn.data('typeLesson'))
+    modal.find('#dateLesson').val(editBtn.data('dateLesson'))
+  })
+ 
+  $('#BtnEditLesson').click(function () {
+    let name = $("#themeOflesson").val()
+    let type = $("#selectTypeLesson").val()
+    let date = $("#dateLesson").val()
+    $.ajax({
+      type: 'POST',
+      data: {
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
+        'typeAction': 'editLesson',
+        'id_lesson':editIdLesson,
+        'name': name,
+        'type': type,
+        'date': date
+      },
+      success: function () {
+        location.reload()
+      },
+    });
+    return false;
+  });
+</script>
