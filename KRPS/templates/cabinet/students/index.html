@@ -50,6 +50,7 @@
                         {% else %}
                             <input onchange= "changeAtten( {{mark.id_attendance}}, {{mark.id_student}}, {{mark.id_lesson}}, '{{mark.date}}', this)" type="checkbox" style="width:40px; height:40px;">
                         {% endif %}
+
                         <select onchange= "changeMark( {{mark.id_estimation}}, {{mark.id_student}}, {{mark.id_lesson}}, '{{mark.date}}', this)" class="custom-select">
                             {% if mark.estimation == '1' %}
                                 <option value="" hidden>Оценка</option>
@@ -113,7 +114,6 @@
 	
 	
 function changeMark(id_estimation, id_student, id_lesson, time_date, mark){
-
     $.ajax({
       type: 'POST',
       data: {
@@ -132,6 +132,7 @@ function changeMark(id_estimation, id_student, id_lesson, time_date, mark){
 }
 
 function changeAtten(id_attendance, id_student, id_lesson, time_date, attendance){
+    console.log(id_attendance, id_student, id_lesson, time_date, attendance);
     if (attendance.checked){
         attendance = 1;
     } else{
@@ -153,7 +154,6 @@ function changeAtten(id_attendance, id_student, id_lesson, time_date, attendance
       },
     });
 }
-
 </script>
 
 {% endblock %}

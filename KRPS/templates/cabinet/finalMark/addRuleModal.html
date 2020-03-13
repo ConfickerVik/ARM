@@ -1,0 +1,77 @@
+<!-- создание правила -->
+<div class="modal fade" id="modalAddRule" tabindex="-1" role="dialog" aria-labelledby="modalAddRule" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Создание правила</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="ruleAddModalContent">
+          <form method="POST">
+            <div class="form-group">
+              <label>Навание правила</label>
+              <input name="name_rule" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Коэффицент оценки</label>
+              <input type="number" min="0" max="1" step="0.1" name="kof_mark" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Коэффицент посещемости</label>
+              <input type="number" min="0" max="1" step="0.1" name="kof_attendance" type="text" class="form-control">
+            </div>
+            <div class="modal-footer p-0 pt-2">
+              <button id="BtnAddRule" type="button" class="btn btn-success">Добавить</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Отмена</button>
+            </div>
+        </form>   
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+  $('#BtnAddRule').click(function () {
+    let name_rule = $("input[name = 'name_rule']").val()
+    let kof_attendance = $("input[name = 'kof_attendance']").val()
+    let kof_mark = $("input[name = 'kof_mark']").val()
+    $(".alert-danger").remove();
+    if(kof_mark == '' || kof_attendance == '' || name_rule == ''){
+      $('#ruleAddModalContent').prepend(`
+      <div class="alert alert-danger" role="alert">
+        Заполните все поля
+      </div>
+      `)
+    }
+    else{
+    let sum = Number(kof_mark) + Number(kof_attendance)
+    if ( sum == 1){
+      $.ajax({
+      type: 'POST',
+      data: {
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
+        'typeAction': 'addRule',
+        'name_rule': name_rule,
+        'kof_attendance': kof_attendance ,
+        'kof_mark': kof_mark
+      },
+      success: function (data) {
+        location.reload()
+      },
+      });
+    }
+    else{
+      $('#ruleAddModalContent').prepend(`
+      <div class="alert alert-danger" role="alert">
+        Сумма коэфицентов должна быть равна 1
+      </div>
+      `)
+    }
+
+    }
+
+
+  });
+
+</script>

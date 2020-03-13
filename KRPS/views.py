@@ -46,8 +46,7 @@ def editCourseModal(request):
 	connectMySQL.commit()
 
 def cabinet(request):
-	courses = {}
-	print(request.POST)
+	#print(request.POST)
 	if request.POST:
 		if request.POST.get('typeAction') == 'addCourse':
 			addCourseModal(request)
@@ -147,7 +146,6 @@ def editEstimation(request):
 def editAttendance(request):
 	id_attendance = request.POST.get('id_attendance')
 	attendance = request.POST.get('attendance')
-	#editAttendanceQuery = "UPDATE krps_db.attendance SET attendance = '%s' WHERE id_attendance = '%s';" % (attendance, id_attendance)
 	editAttendanceQuery = "DELETE FROM krps_db.attendance WHERE id_attendance = '%s';" % (id_attendance)
 	DBConnect.query(connectMySQL, editAttendanceQuery)
 	connectMySQL.commit()
@@ -156,9 +154,15 @@ def createEstimation(request):
 	estimation = request.POST.get('mark')
 	id_lesson = request.POST.get('id_lesson')
 	date = request.POST.get('time_date')
-	month, day_year = date.split(".")
-	day, year = day_year.split(",")
-	date = datetime.strptime(month + day + year, '%b %d %Y').date()
+	if '.' in date:
+		month, day_year = date.split(".")
+		day, year = day_year.split(",")
+		date = datetime.strptime(month + day + year, '%b %d %Y').date()
+	else:
+		month_day, year = date.split(",")
+		month, day = month_day.split(" ")
+		day = " " + day
+		date = datetime.strptime(month + day + year, '%B %d %Y').date()
 	id_student = request.POST.get('id_student')
 	editLessonQuery = "INSERT INTO krps_db.estimation (estimation, id_lesson, date, id_student)  VALUES ('%s', '%s', '%s', '%s');" % (estimation, id_lesson, date, id_student)
 	DBConnect.query(connectMySQL, editLessonQuery)
@@ -167,9 +171,15 @@ def createEstimation(request):
 def createAttendance(request):
 	id_lesson = request.POST.get('id_lesson')
 	date = request.POST.get('time_date')
-	month, day_year = date.split(".")
-	day, year = day_year.split(",")
-	date = datetime.strptime(month + day + year, '%b %d %Y').date()
+	if '.' in date:
+		month, day_year = date.split(".")
+		day, year = day_year.split(",")
+		date = datetime.strptime(month + day + year, '%b %d %Y').date()
+	else:
+		month_day, year = date.split(",")
+		month, day = month_day.split(" ")
+		day = " " + day
+		date = datetime.strptime(month + day + year, '%B %d %Y').date()
 	id_student = request.POST.get('id_student')
 	id_attendance = request.POST.get('id_attendance')
 	attendance = request.POST.get('attendance')
@@ -206,16 +216,15 @@ def marks(request, course_name, group_name):
 				info['attendance'] = 'false'
 				info['id_attendance'] = '0'
 				marksStudents[stud['id_students']]['marksEstimation'].append(info)
-			#elif marks == () and attendances != ():
-			#	info = {}
-			#	info['attendance'] = attendances[0]['attendance']
-			#	info['id_attendance'] = attendances[0]['attendance']
-			#	info['id_estimation'] = '0'
-			#	info['estimation'] = '0'
-			#	info['id_lesson'] = les['id_lesson']
-			#	info['date'] = les['date']
-			#	info['id_student'] = stud['id_students']
-			#	marksStudents[stud['id_students']]['marksEstimation'].append(info)
+			elif marks == () and attendances != ():
+				info['id_estimation'] = '0'
+				info['estimation'] = '0'
+				info['id_lesson'] = les['id_lesson']
+				info['date'] = les['date']
+				info['id_student'] = stud['id_students']
+				info['attendance'] = attendances[0]['attendance']
+				info['id_attendance'] = attendances[0]['id_attendance']
+				marksStudents[stud['id_students']]['marksEstimation'].append(info)
 			else:
 				marksStudents[stud['id_students']]['marksEstimation'].append({'id_estimation': '0', 'estimation': '0', 'id_lesson': les['id_lesson'], 'date': les['date'], 'id_student': stud['id_students'], 'attendance': '0', 'id_attendance': '0'})
 
@@ -233,13 +242,41 @@ def marks(request, course_name, group_name):
 	return render(request, 'cabinet/students/index.html', context={'students':students, 'courses':courses, 'groups':groups, 'lessons':lessons, 'marksStudents': marksStudents})
 
 def finalMark(request):
+	if request.POST.get('typeAction') == 'addRule':
+		addRule(request)
+	elif request.POST.get('typeAction') == 'deleteRule':
+		deleteRule(request)
 	groupsListQuery = "SELECT * FROM krps_db.group;"
 	groups = DBConnect.query(connectMySQL, groupsListQuery)
 	coursesListQuery = "SELECT * FROM krps_db.courses;"
 	courses = DBConnect.query(connectMySQL, coursesListQuery)
-	return render(request, 'cabinet/finalMark/index.html', context={'courses':courses, 'groups':groups})
+	rulesQuery = "SELECT * FROM krps_db.rules;"
+	rules = DBConnect.query(connectMySQL, rulesQuery)
+	return render(request, 'cabinet/finalMark/index.html', context={'courses':courses, 'groups':groups, 'rules':rules})
 
-def finalMarkStudent(request, course_id, group_name, rule):
+def addRule(request):
+	name_rule = request.POST.get('name_rule')
+	kof_attendance = request.POST.get('kof_attendance')
+	kof_mark = request.POST.get('kof_mark')
+	addRuleQuery = "INSERT INTO krps_db.rules (name, kofMark, kofAttendance)  VALUES ('%s', '%s', '%s');" % (name_rule, kof_mark, kof_attendance)
+	DBConnect.query(connectMySQL, addRuleQuery)
+	connectMySQL.commit()
+
+def deleteRule(request):
+	print(request.POST)
+	delRule_id = request.POST.get('delRule_id')
+	deleteRulesQuery = "DELETE FROM krps_db.rules WHERE id_rules = '%s'" % delRule_id
+	DBConnect.query(connectMySQL, deleteRulesQuery)
+	connectMySQL.commit()
+	return render(request, 'cabinet/finalMark/index.html')	
+
+def finalMarkStudent(request, course_id, group_name, kofMark, kofAttendance):
+	if request.POST.get('typeAction') == 'addRule':
+		addRule(request)
+	elif request.POST.get('typeAction') == 'deleteRule':
+		deleteRule(request)
+	rulesQuery = "SELECT * FROM krps_db.rules;"
+	rules = DBConnect.query(connectMySQL, rulesQuery)
 	groupsListQuery = "SELECT * FROM krps_db.group;"
 	groups = DBConnect.query(connectMySQL, groupsListQuery)
 	coursesListQuery = "SELECT * FROM krps_db.courses;"
@@ -252,80 +289,68 @@ def finalMarkStudent(request, course_id, group_name, rule):
 	students = DBConnect.query(connectMySQL, studentsListQuery)
 
 	finalStudents = {}
+	mas_attendence = []
 	for stud in students:
 		finalStudents[stud['id_students']] = {'lastname_stud': stud['lastname_stud'], 'firstname_stud': stud['firstname_stud'], 'middlename_stud': stud['middlename_stud']}
 		finalStudents[stud['id_students']]['finalEstimation'] = []
 		finalStudents[stud['id_students']]['finalAttendance'] = []
+		finalStudents[stud['id_students']]['finalVes'] = ''
+		finalStudents[stud['id_students']]['total'] = ''
 		for les in lessons:
 			marksListQuery = "SELECT * FROM krps_db.estimation WHERE id_student = '%s' and id_lesson = '%s' and date = '%s';" % (stud['id_students'], les['id_lesson'], les['date'])
 			marks = DBConnect.query(connectMySQL, marksListQuery)
-			for final in finalStudents.keys():
-				if final == marks[0]['id_student']:
-					info = marks[0]['estimation']
-					finalStudents[stud['id_students']]['finalEstimation'].append(info)
-		for atten in attens:
-			if atten.get('id_student') == marks[0]['id_student']:
-				inf = atten.get('attendance')
-				#print(atten.get('id_student'), end="---")
-				#print(inf)
-				#print("______")
-				finalStudents[stud['id_students']]['finalAttendance'].append(inf)
-	#print(finalStudents)
+			if marks == ():
+				marks = [{'id_estimation': '', 'estimation': '', 'id_lesson': les['id_lesson'], 'date': les['date'], 'id_student': stud['id_students']}]
+			else:
+				for final in finalStudents.keys():
+					if final == marks[0]['id_student']:
+						info = marks[0]['estimation']
+						finalStudents[stud['id_students']]['finalEstimation'].append(info)		
+			for atten in attens:
+				if marks == ():
+					marks = [{'id_estimation': '', 'estimation': '', 'id_lesson': les['id_lesson'], 'date': les['date'], 'id_student': stud['id_students']}]
+				elif atten.get('id_student') == marks[0]['id_student']:
+					inf = atten.get('attendance')
+					finalStudents[stud['id_students']]['finalAttendance'].append(inf)
 
-	if rule == "mark":
 		su = 0
 		markfinal = 0
-		mfinal = {}
-		for stud in students:
-			mfinal[stud['id_students']] = {'lastname_stud': stud['lastname_stud'], 'firstname_stud': stud['firstname_stud'], 'middlename_stud': stud['middlename_stud']}
-			count_mark = len(finalStudents[stud['id_students']]['finalEstimation'])
-			for i in finalStudents[stud['id_students']]['finalEstimation']:
-				su += int(i)
-			markfinal = "%.2f" % (su/count_mark)
-			su = 0
-			mfinal[stud['id_students']]['fin'] = markfinal
-	elif rule == "attend":
 		countall = 0
 		for les in lessons:
-				#print(les['id_course'])
-				if course_id == les['id_course']:
-					countall += course_id
-		mfinal = {}
-		for stud in students:
-			mfinal[stud['id_students']] = {'lastname_stud': stud['lastname_stud'], 'firstname_stud': stud['firstname_stud'], 'middlename_stud': stud['middlename_stud']}
-			count_atten = len(finalStudents[stud['id_students']]['finalAttendance'])
+			if course_id == les['id_course']:
+				countall += course_id
+		count_mark = len(finalStudents[stud['id_students']]['finalEstimation'])
+		for i in finalStudents[stud['id_students']]['finalEstimation']:
+			su += int(i)
+		# Ср. арифм
+		if count_mark != 0:
+			markfinal = su/count_mark
+		else:
+			markfinal = 0
+
+		count_atten = len(finalStudents[stud['id_students']]['finalAttendance'])
+		if countall != 0:
 			markfinalper = float("%.2f" % (count_atten/countall))
-			if markfinalper >= 0.9:
-					markfinal = "5"
-			elif markfinalper < 0.9 and markfinalper >= 0.70:
-				markfinal = "4"
-			elif markfinalper < 0.70 and markfinalper >= 0.55:
-				markfinal = "3"
-			elif markfinalper < 0.55 and markfinalper >= 0.3:
-				markfinal = "2"
-			elif markfinalper < 0.3 and markfinalper >= 0.0:
-				markfinal = "1"
-			mfinal[stud['id_students']]['fin'] = markfinal
-	elif rule == "mark+attend":
-		countall = 0
-		for les in lessons:
-				#print(les['id_course'])
-				if course_id == les['id_course']:
-					countall += course_id
+		else:
+			markfinalper = 0
+		if markfinalper >= 0.9:
+			markfinalatten = "5"
+		elif markfinalper < 0.9 and markfinalper >= 0.70:
+			markfinalatten = "4"
+		elif markfinalper < 0.70 and markfinalper >= 0.55:
+			markfinalatten = "3"
+		elif markfinalper < 0.55 and markfinalper >= 0.3:
+			markfinalatten = "2"
+		elif markfinalper < 0.3 and markfinalper > 0.0:
+			markfinalatten = "1"
+		elif markfinalper == 0.0:
+			markfinalatten = "0"
+		# % оценка за посещаемость
+		finalStudents[stud['id_students']]['finalVes'] = markfinalatten
+		totalMark = markfinal*float(kofMark) + int(markfinalatten)*float(kofAttendance)
 		su = 0
-		markfinal = 0
-		mfinal = {}
-		for stud in students:
-			mfinal[stud['id_students']] = {'lastname_stud': stud['lastname_stud'], 'firstname_stud': stud['firstname_stud'], 'middlename_stud': stud['middlename_stud']}
-			count_mark = len(finalStudents[stud['id_students']]['finalEstimation'])
-			count_atten = len(finalStudents[stud['id_students']]['finalAttendance'])
-			markfinalper = float("%.2f" % (count_atten/countall))
-			for i in finalStudents[stud['id_students']]['finalEstimation']:
-				su += int(i)
-			markfinaler = "%.2f" % (su/count_mark)
-			markfinal = float(markfinalper) + float(markfinaler)
-			if markfinal > 5.0:
-				markfinal = 5.0
-			su = 0
-			mfinal[stud['id_students']]['fin'] = markfinal
-	return render(request, 'cabinet/finalMark/index.html', context={'courses':courses, 'groups':groups, 'final':mfinal})	
+		finalStudents[stud['id_students']]['total'] = "%.2f" % (totalMark)
+		if finalStudents[stud['id_students']]['finalEstimation'] == []:
+			finalStudents[stud['id_students']]['finalEstimation'] = '-'
+	#print(finalStudents)
+	return render(request, 'cabinet/finalMark/index.html', context={'courses':courses, 'groups':groups, 'finalStudents':finalStudents, 'rules':rules})	
