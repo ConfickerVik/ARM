@@ -29,7 +29,7 @@ CREATE TABLE `attendance` (
   `id_lessons` int(11) DEFAULT NULL,
   `id_student` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_attendance`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +38,7 @@ CREATE TABLE `attendance` (
 
 LOCK TABLES `attendance` WRITE;
 /*!40000 ALTER TABLE `attendance` DISABLE KEYS */;
+INSERT INTO `attendance` VALUES (33,1,'2015-01-05',1,1),(40,1,'2015-01-11',7,2),(41,1,'2014-02-15',12,1),(42,1,'2015-01-05',1,3),(43,1,'2015-01-11',7,3),(44,1,'2014-02-15',12,3);
 /*!40000 ALTER TABLE `attendance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +86,7 @@ CREATE TABLE `estimation` (
   `date` date DEFAULT NULL,
   `id_student` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_estimation`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +95,7 @@ CREATE TABLE `estimation` (
 
 LOCK TABLES `estimation` WRITE;
 /*!40000 ALTER TABLE `estimation` DISABLE KEYS */;
-INSERT INTO `estimation` VALUES (1,'3',1,'2015-01-05',1),(2,'3',7,'2015-01-11',1),(3,'4',12,'2014-02-15',2),(4,'2',2,'2015-01-06',2),(5,'2',1,'2015-01-05',2),(6,'4',7,'2015-01-11',2),(7,'3',12,'2014-02-15',1);
+INSERT INTO `estimation` VALUES (1,'4',1,'2015-01-05',1),(6,'5',7,'2015-01-11',2),(9,'5',12,'2014-02-15',3),(12,'4',1,'2015-01-05',2),(13,'2',7,'2015-01-11',1),(14,'2',12,'2014-02-15',1),(15,'5',1,'2015-01-05',3),(16,'4',7,'2015-01-11',4),(17,'5',7,'2015-01-11',3),(18,'5',1,'2015-01-05',4),(19,'1',12,'2014-02-15',4),(20,'5',1,'2015-01-05',5),(27,'2',12,'2014-02-15',2),(28,'4',12,'2014-02-15',5),(29,'2',1,'2015-01-05',6),(30,'5',7,'2015-01-11',5),(31,'5',7,'2015-01-11',6),(32,'4',12,'2014-02-15',6);
 /*!40000 ALTER TABLE `estimation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,10 +232,6 @@ LOCK TABLES `university` WRITE;
 INSERT INTO `university` VALUES (1,'ИрГУПС');
 /*!40000 ALTER TABLE `university` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'krps_db'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -245,4 +242,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-28 22:49:49
+-- Dump completed on 2020-03-07  2:38:28

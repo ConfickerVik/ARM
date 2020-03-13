@@ -45,7 +45,12 @@
                 {% for mark in value.marksEstimation %}
                 <td>
                     <div class="input-group">
-                        <input  type="checkbox" style="width:40px; height:40px;">
+                        {% if mark.attendance == 1 %}
+                            <input checked="checked" onchange= "changeAtten( {{mark.id_attendance}}, {{mark.id_student}}, {{mark.id_lesson}}, '{{mark.date}}', this)" type="checkbox" style="width:40px; height:40px;">
+                        {% else %}
+                            <input onchange= "changeAtten( {{mark.id_attendance}}, {{mark.id_student}}, {{mark.id_lesson}}, '{{mark.date}}', this)" type="checkbox" style="width:40px; height:40px;">
+                        {% endif %}
+
                         <select onchange= "changeMark( {{mark.id_estimation}}, {{mark.id_student}}, {{mark.id_lesson}}, '{{mark.date}}', this)" class="custom-select">
                             {% if mark.estimation == '1' %}
                                 <option value="" hidden>Оценка</option>
@@ -108,33 +113,7 @@
     })
 	
 	
-<<<<<<< HEAD
-function changeMark(id_estimation, id_student, id_lesson, mark){
-
-    alert(id_estimation)
-    alert(id_student)
-    alert(id_lesson)
-    alert(mark.value)
-
-    // $.ajax({
-    //   type: 'POST',
-    //   data: {
-    //     'csrfmiddlewaretoken': '{{ csrf_token }}',
-    //     'typeAction': 'changeMark',
-    //     'id_estimation': id_estimation,
-    //     'id_student': id_student,
-    //     'id_lesson': id_lesson,
-    //   },
-    //   success: function () {
-    //     'Посещалка поменялась'
-    //   },
-    // });
-=======
 function changeMark(id_estimation, id_student, id_lesson, time_date, mark){
-    //alert(id_estimation)
-    //alert(id_student)
-    //alert(id_lesson)
-    //alert(mark.value)
     $.ajax({
       type: 'POST',
       data: {
@@ -150,7 +129,29 @@ function changeMark(id_estimation, id_student, id_lesson, time_date, mark){
         location.reload()
       },
     });
->>>>>>> 6fed1c6da23657b80b2c4d9a8d5dd8176bd16a6c
+}
+
+function changeAtten(id_attendance, id_student, id_lesson, time_date, attendance){
+    if (attendance.checked){
+        attendance = 1;
+    } else{
+        attendance = 0;
+    }
+    $.ajax({
+      type: 'POST',
+      data: {
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
+        'typeAction': 'changeAtten',
+        'time_date': time_date,
+        'id_attendance': id_attendance,
+        'id_student': id_student,
+        'id_lesson': id_lesson,
+        'attendance':attendance
+      },
+      success: function (data) {
+        location.reload()
+      },
+    });
 }
 </script>
 
