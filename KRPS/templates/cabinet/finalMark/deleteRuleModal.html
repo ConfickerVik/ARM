@@ -1,0 +1,45 @@
+<!-- Удаление правила -->
+<div class="modal fade" id="modalDeleteRule" tabindex="-1" role="dialog" aria-labelledby="modalDeleteRule"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form id="removeLessonForm" method="POST" action="/cabinet/courses/">
+                <div class="modal-header">
+                    <h5 class="modal-title">Подтверждение действия</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Вы действительно хотите удалить правило?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnRemoveRule" class="btn btn-danger">Удалить</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Отмена</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    let idRule
+    $('#modalDeleteRule').on('show.bs.modal', function (event) {
+        let delBtn = $(event.relatedTarget)
+        idRule = delBtn.data('idRule')
+    })
+    $('#btnRemoveRule').click(() => {
+        $.ajax({
+            type: 'POST',
+            data: {
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+                'typeAction': 'deleteRule',
+                'idRule': idRule
+            },
+            success: () => {
+                location.reload()
+            }
+        });
+        return false;
+    });
+
+</script>

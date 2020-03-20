@@ -29,7 +29,7 @@ CREATE TABLE `attendance` (
   `id_lessons` int(11) DEFAULT NULL,
   `id_student` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_attendance`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `attendance` (
 
 LOCK TABLES `attendance` WRITE;
 /*!40000 ALTER TABLE `attendance` DISABLE KEYS */;
-INSERT INTO `attendance` VALUES (33,1,'2015-01-05',1,1),(40,1,'2015-01-11',7,2),(41,1,'2014-02-15',12,1),(42,1,'2015-01-05',1,3),(43,1,'2015-01-11',7,3),(44,1,'2014-02-15',12,3);
+INSERT INTO `attendance` VALUES (33,1,'2015-01-05',1,1),(40,1,'2015-01-11',7,2),(42,1,'2015-01-05',1,3),(43,1,'2015-01-11',7,3),(44,1,'2014-02-15',12,3),(54,1,'2014-02-15',12,1);
 /*!40000 ALTER TABLE `attendance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,7 +59,7 @@ CREATE TABLE `courses` (
   `comment` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id_course`),
   KEY `group_id_idx` (`group_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,7 +86,7 @@ CREATE TABLE `estimation` (
   `date` date DEFAULT NULL,
   `id_student` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_estimation`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,7 +139,7 @@ CREATE TABLE `lessons` (
   `date` date NOT NULL,
   `name` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id_lesson`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,7 +148,7 @@ CREATE TABLE `lessons` (
 
 LOCK TABLES `lessons` WRITE;
 /*!40000 ALTER TABLE `lessons` DISABLE KEYS */;
-INSERT INTO `lessons` VALUES (1,1,'лаб','2015-01-05','Лаб 1'),(2,2,'лек','2015-01-06','Лек 1'),(3,3,'лек','2015-01-07','Лек 1'),(4,4,'лек','2015-01-08','Лек 1'),(5,3,'лек','2015-01-09','Лек 1'),(6,2,'лек','2015-01-10','Лек 1'),(7,1,'лаб','2015-01-11','Лаб 2'),(8,3,'лаб','2015-01-12','Лаб 1'),(9,4,'лаб','2015-01-13','Лаб 1'),(10,2,'лек','2015-01-14','Лек 2'),(12,1,'Лекция','2014-02-15','В мире птиц 2');
+INSERT INTO `lessons` VALUES (1,1,'лаб','2015-01-05','Лаб 1'),(2,2,'лек','2015-01-06','Лек 1'),(3,3,'лек','2015-01-07','Лек 1'),(4,4,'лек','2015-01-08','Лек 1'),(5,3,'лек','2015-01-09','Лек 1'),(6,2,'лек','2015-01-10','Лек 1'),(7,1,'лаб','2015-01-11','Лаб 2'),(8,3,'лаб','2015-01-12','Лаб 1'),(9,4,'лаб','2015-01-13','Лаб 1'),(10,2,'лек','2015-01-14','Лек 2'),(12,1,'Лекция','2014-02-15','В мире птиц 2'),(16,1,'Лекция','2020-03-13','new les');
 /*!40000 ALTER TABLE `lessons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -180,6 +180,32 @@ LOCK TABLES `prepods` WRITE;
 /*!40000 ALTER TABLE `prepods` DISABLE KEYS */;
 INSERT INTO `prepods` VALUES (1,'Иванов','Вадим','Петрович','Программирвоание','ИВТ','dfhnj','fdhjrnf'),(2,'Васильев','Анатолий','Владимирович','Физика','Физика','fghjmt','hgfjtyk'),(3,'Савельева','Анна','Сергеевна','Математика','Математика','dsfhnrt','rthrtmnj');
 /*!40000 ALTER TABLE `prepods` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rules`
+--
+
+DROP TABLE IF EXISTS `rules`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rules` (
+  `id_rules` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `kofAttendance` varchar(45) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `kofMark` varchar(45) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id_rules`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rules`
+--
+
+LOCK TABLES `rules` WRITE;
+/*!40000 ALTER TABLE `rules` DISABLE KEYS */;
+INSERT INTO `rules` VALUES (1,'first','0.8','0.2'),(2,'second','0.7','0.3'),(12,'3','0.9','0.1');
+/*!40000 ALTER TABLE `rules` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -242,4 +268,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-07  2:38:28
+-- Dump completed on 2020-03-20 19:43:53

@@ -2,37 +2,31 @@
 
 {% block content %}
 <h1 class="display-4">Итоговая оценка</h1>
+<button type="button" id="buttonAddRule" class="btn btn-success my-3 btn-lg" data-toggle="modal" data-target="#modalAddRule">Добавить правило</button>
 
 <table style="font-size:1.4rem" class="table table-striped table-hover table-dark m-0"> 
     <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">Правило</th>
+            <th scope="col">Коэф. посещаемости</th>
+            <th scope="col">Коэф. оценки</th>
             <th scope="col"></th>
         </tr>
     </thead>
     <tbody> 
+        {% for rule in rules %}
         <tr>
-            <th scope="row">1</th>
-            <td>Оценка</td>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{rule.name}}</td>
+            <td>{{rule.kofAttendance}}</td>
+            <td>{{rule.kofMark}}</td>
             <td class="text-right">
-                <i onclick="selectRule(this)" data-rule="mark" class="fas fa-check p-2 border border-primary rounded text-primary cross"></i>
+                <i onclick="selectRule(this)" data-kof-attend="{{rule.kofAttendance}}" data-kof-mark="{{rule.kofMark}}" class="fas fa-check p-2 border border-primary rounded text-primary cross"></i>
+                <i data-toggle="modal" data-target="#modalDeleteRule" class="fas fa-trash p-2 border border-danger rounded text-danger cross" data-id-rule="{{rule.id_rules}}"></i>
             </td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Посещаемость</td>
-            <td class="text-right">
-                <i onclick="selectRule(this)" data-rule="attend" class="fas fa-check p-2 border border-primary rounded text-primary cross"></i>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Оценка+посещаемость</td>
-            <td class="text-right">
-                <i onclick="selectRule(this)" data-rule="mark+attend" class="fas fa-check p-2 border border-primary rounded text-primary cross"></i>
-            </td>
-        </tr>
+        {% endfor %}
         <tr>
             <th colspan="5" scope="row">
                 <div class="input-group mb-2">
@@ -66,35 +60,51 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">ФИО</th>
-            <th scope="col">Оценка</th>
+            <th scope="col">Оценки</th>
+            <th scope="col">Вес</th>
+            <th scope="col">Итог</th>
         </tr>
     </thead>
     <tbody>
-        {% for bla in blas %}
+        {% for finalStudent in finalStudents %}
         <tr>
             <th scope="row">{{ forloop.counter }}</th>
-            <td>ФИО</td>
-            <td>ОЦЕНКА</td>
+            <td>{{finalStudent.lastname_stud}} {{finalStudent.firstname_stud}} {{finalStudent.middlename_stud}}</td>
+            <td>
+                {% for item in finalEstimation %}
+                    {{item}} 
+                {% endfor %}
+            </td>
+            <td>{{finalStudent.finalVes}}</td>
+            <td>КОЭФ</td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
 
 <script>
-    let globalRule
+
+    let globalKofAttend, globalKofMark
+
     const selectRule = (choice)=>{
         $(".fa-check").removeClass('activeFinalBtn')
         let choiceBtn = $(choice)
-        globalRule = choiceBtn.data('rule')
+        globalKofAttend = choiceBtn.data('kofAttend')
+        globalKofMark = choiceBtn.data('kofMark')
+
         choiceBtn.addClass('activeFinalBtn')
     }
 
     $('#showFinalMarks').click(()=>{
-        let selectCourse =$('#select_course').val()
+        let selectCourse = $('#select_course').val()
         let selectGroup = $('#select_group').val()
         
-        location.replace(`/cabinet/finalMark/${selectCourse}&${selectGroup}&${globalRule}`)
+        location.replace(`/cabinet/finalMark/${selectCourse}&${selectGroup}&${globalKofMark}&${globalKofAttend}`)
     })
 
 </script>
+
+{% include 'cabinet/finalMark/addRuleModal.html' %}
+{% include 'cabinet/finalMark/deleteRuleModal.html' %}
+
 {% endblock %}

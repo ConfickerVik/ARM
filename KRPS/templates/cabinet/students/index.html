@@ -132,6 +132,8 @@ function changeMark(id_estimation, id_student, id_lesson, time_date, mark){
 }
 
 function changeAtten(id_attendance, id_student, id_lesson, time_date, attendance){
+    console.log(id_attendance, id_student, id_lesson, time_date, attendance);
+    
     if (attendance.checked){
         attendance = 1;
     } else{
