@@ -109,8 +109,22 @@
     $('#buttonGoogle').click(()=>{
         location.replace(`https://docs.google.com/spreadsheets/d/1Fi8KIY8YLzx-ARKEn8PfEav_U13iOQTFy2mvCY2aoIg/edit#gid=0`)
     })
-	
-	
+
+    $('#showStudentsMarks').click(()=>{
+        let selectGroup = $('#select_group').val()
+        let selectCourse =$('#select_course').val()
+        $(".alert-danger").remove();
+        if( selectGroup == '' || selectCourse == ''){
+        $('#students_valid').prepend(`
+        <div class="alert alert-danger" role="alert">
+            Заполните все поля
+        </div>
+        `)
+        } else{
+            location.replace(`/cabinet/students/${selectCourse}&${selectGroup}`)
+        }
+    })
+    
 function changeMark(id_estimation, id_student, id_lesson, time_date, mark){
     $.ajax({
       type: 'POST',
