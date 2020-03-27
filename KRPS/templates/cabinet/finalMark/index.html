@@ -66,17 +66,17 @@
         </tr>
     </thead>
     <tbody>
-        {% for finalStudent in finalStudents %}
+        {% for key, value in finalStudents.items %}
         <tr>
             <th scope="row">{{ forloop.counter }}</th>
-            <td>{{finalStudent.lastname_stud}} {{finalStudent.firstname_stud}} {{finalStudent.middlename_stud}}</td>
+            <td>{{value.lastname_stud}} {{value.firstname_stud}} {{value.middlename_stud}}</td>
             <td>
-                {% for item in finalEstimation %}
+                {% for item in value.finalEstimation %}
                     {{item}} 
                 {% endfor %}
             </td>
-            <td>{{finalStudent.finalVes}}</td>
-            <td>КОЭФ</td>
+            <td>{{value.finalVes}}</td>
+            <td>{{value.total}}</td>
         </tr>
         {% endfor %}
     </tbody>
@@ -101,7 +101,6 @@
         
         location.replace(`/cabinet/finalMark/${selectCourse}&${selectGroup}&${globalKofMark}&${globalKofAttend}`)
     })
-
 </script>
 
 {% include 'cabinet/finalMark/addRuleModal.html' %}

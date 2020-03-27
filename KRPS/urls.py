@@ -25,5 +25,5 @@ urlpatterns = [
 	path('cabinet/students/', views.students, name ="students"),
     path('cabinet/students/<int:course_name>&<str:group_name>/', views.marks),
     path('cabinet/finalMark/', views.finalMark, name ="finalMark"),
-    path('admin/', admin.site.urls),
+    path('cabinet/finalMark/<int:course_id>&<str:group_name>&<str:kofMark>&<str:kofAttendance>/', views.finalMarkStudent),
 ]

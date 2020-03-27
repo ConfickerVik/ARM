@@ -1,12 +1,14 @@
 import pymysql
+from django.conf import settings
 
 
 class MySQLDBConnect:
 	def connect(self):
-		connection = pymysql.connect(host='127.0.0.1',
-			user='root',
-			password='Deadpool1',
-			db='krps_db',
+		connection = pymysql.connect(
+			host=settings.DATABASES['default']['HOST'], 
+			user=settings.DATABASES['default']['USER'], 
+			password=settings.DATABASES['default']['PASSWORD'],
+			database=settings.DATABASES['default']['NAME'],
 			cursorclass=pymysql.cursors.DictCursor)
 		return connection
 
