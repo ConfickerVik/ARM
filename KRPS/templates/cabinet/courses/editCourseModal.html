@@ -9,31 +9,36 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <div class="modal-body">
         <form method="POST">
           <div class="form-group">
             <label>Навание дисциплины</label>
-            <input type="text" id="nameCourse" class="form-control">
+            <input type="text" id="nameCourse"  required class="form-control">
           </div>
+
 
           <div class="form-group">
             <label>Группа</label>
-            <input type="text" id="groupCourse" class="form-control">
+            <input type="text" id="groupCourse" required class="form-control">
           </div>
+
 
           <div class="form-group">
             <label>Университет</label>
-            <input type="text" id="universityCourse" class="form-control">
+            <input type="text" id="universityCourse" required class="form-control">
           </div>
 
           <div class="form-group">
             <label>Год обучения</label>
-            <input type="text" id="yearCourse" class="form-control">
+            <input type="text" id="yearCourse" required pattern="[0-9]"   minlength="2" maxlength="4" class="form-control">
           </div>
+
           <div class="modal-footer">
             <button id="BtnEditCourse" type="button" class="btn btn-success">Изменить</button>
             <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Отмена</button>
           </div>
+          
         </form>
       </div>
     </div>

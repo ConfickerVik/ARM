@@ -13,33 +13,32 @@
         <form method="POST">
           <div class="form-group">
             <label>Дисциплина</label>
-            <input type="text" id="nameCourse" class="form-control">
+            <input type="text" id="nameCourse" required  class="form-control">
           </div>
 
           <div class="form-group">
             <label for="formGroupExampleInput">Группа</label>
-            <input type="text" id="groupCourse" class="form-control">
+            <input type="text" id="groupCourse" required  class="form-control">
           </div>
 
           <div class="form-group">
             <label>Университет</label>
-            <input type="text" id="universityCourse" class="form-control">
+            <input type="text" id="universityCourse"  required  class="form-control">
           </div>
 
           <div class="form-group">
             <label>Год обучения</label>
-            <input type="text" id="yearCourse" class="form-control">
+            <input type="text" id="yearCourse" required pattern="[0-9]" minlength="2" maxlength="4" class="form-control">
           </div>
 
           <div class="form-group">
             <label>Кол-во часов</label>
-            <input type="number" id="hoursCourse" class="form-control">
+            <input type="text"  id="hoursCourse" required  pattern="[0-9]"   minlength="1" maxlength="3"   class="form-control">
           </div>
 
           <div class="form-group">
             <label for="formGroupExampleInput">Описание курса</label>
             <textarea class="form-control" id="commentCourse" id="exampleFormControlTextarea1" rows="5" cols="20"></textarea>
-
           </div>
 
           <div class="modal-footer">

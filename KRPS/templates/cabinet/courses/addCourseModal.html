@@ -7,9 +7,9 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-        </div>
+        </div> 
         <div class="modal-body">
-            <form method="POST">
+            <form method="POST" id="form-addCourseModal">
                 <div class="form-group">
                   <label>Навание дисциплины</label>
                   <input name="name_dis" type="text" class="form-control">
@@ -27,7 +27,7 @@
 
                 <div class="form-group">
                   <label>Год обучения</label>
-                  <input name="year_education" type="text" class="form-control">
+                  <input placeholder="2020-2021" name="year_education" type="text" id="year_education" class="form-control">
                 </div>
                 <div class="modal-footer p-0 pt-2">
                   <button id="BtnAddCourse" type="button" class="btn btn-success">Добавить</button>
@@ -40,6 +40,13 @@
     </div>
   </div>
 <script>
+  //Маска для поля "год обучения"
+  var element = document.getElementById('year_education');
+  var maskOptions = {
+    mask: '0000-0000'
+  };
+  var mask = IMask(element, maskOptions);
+
   $('#BtnAddCourse').click(function () {
     let name_dis = $("input[name = 'name_dis']").val()
     let group_name = $("input[name = 'group_name']").val()
