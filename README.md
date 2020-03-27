@@ -14,7 +14,7 @@
    <tr><td>Лидия Морина</td> <td>&#128736;FrontEnd</td></tr>
    <tr><td>Игорь Глинский</td><td>&#128190;DataBase</td></tr>
    <tr><td>Ольга Зуева</td><td>&#9997;Tester</td></tr>
-   <tr><td>Анна Абдулина</td><td>&#128736;Tester</td></tr>
+   <tr><td>Анна Абдуллина</td><td>&#128736;Tester</td></tr>
 </table>
 
 
