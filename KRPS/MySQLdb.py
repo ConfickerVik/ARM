@@ -3,9 +3,10 @@ import pymysql
 
 class MySQLDBConnect:
 	def connect(self):
-		connection = pymysql.connect(host='127.0.0.1',
+		connection = pymysql.connect(
+			host='127.0.0.1',
 			user='root',
-			password='Deadpool1',
+			password='qwerty90',
 			db='krps_db',
 			cursorclass=pymysql.cursors.DictCursor)
 		return connection
