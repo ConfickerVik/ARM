@@ -27,4 +27,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('cabinet/finalMark/', views.finalMark, name ="finalMark"),
     path('cabinet/finalMark/<int:course_id>&<str:group_name>&<str:kofMark>&<str:kofAttendance>/', views.finalMarkStudent),
+    path('cabinet/students/google/<int:course_name>&<str:group_name>/', views.googleSheets),
 ]

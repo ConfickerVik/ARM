@@ -3,6 +3,10 @@ from django.conf import settings
 from KRPS.MySQLdb import MySQLDBConnect
 import datetime
 from datetime import datetime
+import httplib2
+import apiclient.discovery
+from oauth2client.service_account import ServiceAccountCredentials
+import pickle
 
 
 DBConnect = MySQLDBConnect()
@@ -197,7 +201,7 @@ def marks(request, course_name, group_name):
 	studentsListQuery = "SELECT * FROM krps_db.students WHERE group_stud = '%s';" % group_name
 	students = DBConnect.query(connectMySQL, studentsListQuery)
 	marksStudents = {}
-	info = ''
+	info = {}
 	for stud in students:
 		marksStudents[stud['id_students']] = {'lastname_stud': stud['lastname_stud'], 'firstname_stud': stud['firstname_stud'], 'middlename_stud': stud['middlename_stud']}
 		marksStudents[stud['id_students']]['marksEstimation'] = []
@@ -213,7 +217,7 @@ def marks(request, course_name, group_name):
 				marksStudents[stud['id_students']]['marksEstimation'].append(info)
 			elif marks != () and attendances == ():
 				info = marks[0]
-				info['attendance'] = 'false'
+				info['attendance'] = '0'
 				info['id_attendance'] = '0'
 				marksStudents[stud['id_students']]['marksEstimation'].append(info)
 			elif marks == () and attendances != ():
@@ -227,6 +231,7 @@ def marks(request, course_name, group_name):
 				marksStudents[stud['id_students']]['marksEstimation'].append(info)
 			else:
 				marksStudents[stud['id_students']]['marksEstimation'].append({'id_estimation': '0', 'estimation': '0', 'id_lesson': les['id_lesson'], 'date': les['date'], 'id_student': stud['id_students'], 'attendance': '0', 'id_attendance': '0'})
+	googleSheets(course_name, group_name, students, lessons, marksStudents)
 
 	if request.POST:
 		if request.POST.get('typeAction') == 'changeMark':
@@ -354,3 +359,65 @@ def finalMarkStudent(request, course_id, group_name, kofMark, kofAttendance):
 			finalStudents[stud['id_students']]['finalEstimation'] = '-'
 	#print(finalStudents)
 	return render(request, 'cabinet/finalMark/index.html', context={'courses':courses, 'groups':groups, 'finalStudents':finalStudents, 'rules':rules})	
+
+def googleSheets(course_name, group_name, students, lessons, marksStudents):
+	mas_date = ["ФИО"]
+	for les in lessons:
+		mas_date.append(str(les['date']))
+
+	mas_stud = []
+	for stud in students:
+		a = str(stud['lastname_stud']) + " " + str(stud['firstname_stud']) + " " + str(stud['middlename_stud'])
+		mas_stud.append(a)
+
+	mas_marks = []
+	for key, value in marksStudents.items():
+		mas_nemarks = []
+		for mark in value['marksEstimation']:
+			b = str(mark['estimation']) + " / " + str(mark['attendance'])
+			mas_nemarks.append(b)
+		mas_marks.append(mas_nemarks)
+	#print(mas_marks)
+
+	name_doc = str(course_name) + "_" + str(group_name)
+	row_google = len(students)+1
+	colums_google = len(lessons)+3
+
+	CREDENTIALS_FILE = 'KRPS-52052d2aee7e.json'  # имя файла с закрытым ключом
+	spreadsheet_id = '1Fi8KIY8YLzx-ARKEn8PfEav_U13iOQTFy2mvCY2aoIg'
+
+	credentials = ServiceAccountCredentials.from_json_keyfile_name(CREDENTIALS_FILE, ['https://www.googleapis.com/auth/spreadsheets',
+																					'https://www.googleapis.com/auth/drive'])
+	httpAuth = credentials.authorize(httplib2.Http())
+	service = apiclient.discovery.build('sheets', 'v4', http = httpAuth)
+
+	service.spreadsheets().values().clear(
+		spreadsheetId = spreadsheet_id,
+		range = "A1:Z1000"
+	).execute()
+	#print(spreadsheet)
+
+	driveService = apiclient.discovery.build('drive', 'v3', http = httpAuth)
+	shareRes = driveService.permissions().create(
+		fileId = spreadsheet_id,
+		body = {'type': 'anyone', 'role': 'reader'},  # доступ на чтение кому угодно
+		fields = 'id'
+	).execute()
+
+	service.spreadsheets().values().batchUpdate(
+		spreadsheetId = spreadsheet_id,
+		body ={
+			"valueInputOption": "USER_ENTERED",
+			"data": [
+				{"range": "A1:E1",
+				"majorDimension": "ROWS",
+				"values": [mas_date]},
+				{"range": "A2:A"+str(row_google+1),
+				"majorDimension": "COLUMNS",
+				"values": [mas_stud]},
+				{"range": "B2:Z"+str(colums_google+1),
+				"majorDimension": "ROWS",
+				"values": [thing for thing in mas_marks]}
+			]
+		}
+	).execute()
