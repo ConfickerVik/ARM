@@ -103,13 +103,11 @@
         {% endfor %}
         </tbody>
     </table>
+<button type="button" id="buttonGoogle" class="btn btn-success my-3 btn-lg">Перейти на Google таблицу</button>
     
 <script>
-    $('#showStudentsMarks').click(()=>{
-        let selectGroup = $('#select_group').val()
-        let selectCourse =$('#select_course').val()
-        
-        location.replace(`/cabinet/students/${selectCourse}&${selectGroup}`)
+    $('#buttonGoogle').click(()=>{
+        location.replace(`https://docs.google.com/spreadsheets/d/1Fi8KIY8YLzx-ARKEn8PfEav_U13iOQTFy2mvCY2aoIg/edit#gid=0`)
     })
 	
 	
